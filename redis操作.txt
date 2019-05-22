@@ -1,0 +1,15 @@
+一、redis启动
+	redis-server redis.conf
+	
+二、关闭redis
+	1.通过redis-cli连接服务器后执行shutdown命令
+	2.可以使用shutdown命令关闭redis服务器外，还可以使用kill+进程号的方式关闭redis服务
+	3.不要使用Kill 9方式关闭redis进程，这样redis不会进行持久化操作。
+	
+三、redis允许局域网内其它服务器访问
+	1.vi /etc/redis.conf 将bind 120.0.0.1 改为 bind 120.0.0.1 172.16.52.221（为自己的IP地址）
+	2.设置 protected-node 为 no
+	3.开放端口 或 关闭防火墙
+		1.firewall-cmd --zone=public --add-port=80/tcp --permanent
+		2.firewall-cmd --reload
+	4.重起redis
