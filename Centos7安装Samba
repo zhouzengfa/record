@@ -46,6 +46,9 @@
 9.设置开机启动
 	systemctl enable smb
 	
-10.在windows下登陆
+10.关闭防火墙
+	systemctl stop firewalld.service
+	
+11.在windows下登陆
 	1.在cmd框内输出 \\linux ip
 	2.在弹出的框内输入用户名和密码 root
