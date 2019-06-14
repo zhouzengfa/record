@@ -17,7 +17,8 @@
 四、设置开机启动
 	1.修改/etc/init.d/redis 文件
 			#!/bin/sh
-			#
+			# chkconfig: 2345 90 10  
+			# description: Start and Stop redis
 			# Simple Redis init.d script conceived to work on Linux systems
 			# as it does use of the /proc filesystem.
 			
