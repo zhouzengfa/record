@@ -1,23 +1,25 @@
-1.°²×°
+####1.å®‰è£…
 	yum install samba
 
-2.²é¿´°²×°Çé¿ö
+####2.æŸ¥çœ‹å®‰è£…æƒ…å†µ
  	rpm -qa | grep samba
- 	Êä³ö£º
- 		samba-client-libs-4.8.3-4.el7.x86_64
+
+ 	è¾“å‡ºï¼š
+		samba-client-libs-4.8.3-4.el7.x86_64
 		samba-4.8.3-4.el7.x86_64
 		samba-common-libs-4.8.3-4.el7.x86_64
 		samba-common-tools-4.8.3-4.el7.x86_64
 		samba-common-4.8.3-4.el7.noarch
 		samba-libs-4.8.3-4.el7.x86_64
 		
-3.´´½¨¹²ÏíÄ¿Â¼
+####3.åˆ›å»ºå…±äº«ç›®å½•
 		mkdir /home/dev
 	
-4.ĞŞ¸ÄÈ¨ÏŞ
+####4.ä¿®æ”¹æƒé™
 		chmod 777 /home/dev
 		
-5.ÔÚ/etc/samba/smb.confÎ´Î²¼ÓÈë 
+####5.åœ¨/etc/samba/smb.confæœªå°¾åŠ å…¥ 
+```
 [Share]
          comment = Shared Folder with username and password
          path = /home/dev
@@ -32,23 +34,23 @@
          browseable = yes
          force directory mode = 0777
          force create mode = 0777
-
-6.²é¿´ÅäÖÃ¸ñÊ½ÊÇ·ñÕıÈ·
+```
+####6.æŸ¥çœ‹é…ç½®æ ¼å¼æ˜¯å¦æ­£ç¡®
 	testparm
 	        
-7.Ìí¼ÓsambaÓÃ»§
+####7.æ·»åŠ sambaç”¨æˆ·
 	smbpasswd -a root
-	ÊäÈëÁ½´ÎÃÜÂë root
+	è¾“å…¥ä¸¤æ¬¡å¯†ç  root
 	
-8.Æô¶¯smb·şÎñÆ÷
+####8.å¯åŠ¨smbæœåŠ¡å™¨
 	systemctl start smb
 	
-9.ÉèÖÃ¿ª»úÆô¶¯
+####9.è®¾ç½®å¼€æœºå¯åŠ¨
 	systemctl enable smb
 	
-10.¹Ø±Õ·À»ğÇ½
+####10.å…³é—­é˜²ç«å¢™
 	systemctl stop firewalld.service
 	
-11.ÔÚwindowsÏÂµÇÂ½
-	1.ÔÚcmd¿òÄÚÊä³ö \\linux ip
-	2.ÔÚµ¯³öµÄ¿òÄÚÊäÈëÓÃ»§ÃûºÍÃÜÂë root
+####11.åœ¨windowsä¸‹ç™»é™†
+	1.åœ¨cmdæ¡†å†…è¾“å‡º \\linux ip
+	2.åœ¨å¼¹å‡ºçš„æ¡†å†…è¾“å…¥ç”¨æˆ·åå’Œå¯†ç  root
