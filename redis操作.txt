@@ -1,81 +1,79 @@
-Ò»¡¢redisÆô¶¯
+##### ä¸€ã€rediså¯åŠ¨
 	redis-server redis.conf
 	
-¶ş¡¢¹Ø±Õredis
-	1.Í¨¹ıredis-cliÁ¬½Ó·şÎñÆ÷ºóÖ´ĞĞshutdownÃüÁî
-	2.¿ÉÒÔÊ¹ÓÃshutdownÃüÁî¹Ø±Õredis·şÎñÆ÷Íâ£¬»¹¿ÉÒÔÊ¹ÓÃkill+½ø³ÌºÅµÄ·½Ê½¹Ø±Õredis·şÎñ
-	3.²»ÒªÊ¹ÓÃKill 9·½Ê½¹Ø±Õredis½ø³Ì£¬ÕâÑùredis²»»á½øĞĞ³Ö¾Ã»¯²Ù×÷¡£
+##### äºŒã€å…³é—­redis
+	1.é€šè¿‡redis-cliè¿æ¥æœåŠ¡å™¨åæ‰§è¡Œshutdownå‘½ä»¤
+	2.å¯ä»¥ä½¿ç”¨shutdownå‘½ä»¤å…³é—­redisæœåŠ¡å™¨å¤–ï¼Œè¿˜å¯ä»¥ä½¿ç”¨kill+è¿›ç¨‹å·çš„æ–¹å¼å…³é—­redisæœåŠ¡
+	3.ä¸è¦ä½¿ç”¨Kill 9æ–¹å¼å…³é—­redisè¿›ç¨‹ï¼Œè¿™æ ·redisä¸ä¼šè¿›è¡ŒæŒä¹…åŒ–æ“ä½œã€‚
 	
-Èı¡¢redisÔÊĞí¾ÖÓòÍøÄÚÆäËü·şÎñÆ÷·ÃÎÊ
-	1.vi /etc/redis.conf ½«bind 120.0.0.1 ¸ÄÎª bind 120.0.0.1 172.16.52.221£¨Îª×Ô¼ºµÄIPµØÖ·£©
-	2.ÉèÖÃ protected-node Îª no
-	3.¿ª·Å¶Ë¿Ú »ò ¹Ø±Õ·À»ğÇ½
+##### ä¸‰ã€rediså…è®¸å±€åŸŸç½‘å†…å…¶å®ƒæœåŠ¡å™¨è®¿é—®
+	1.vi /etc/redis.conf å°†bind 120.0.0.1 æ”¹ä¸º bind 120.0.0.1 172.16.52.221ï¼ˆä¸ºè‡ªå·±çš„IPåœ°å€ï¼‰
+	2.è®¾ç½® protected-node ä¸º no
+	3.å¼€æ”¾ç«¯å£ æˆ– å…³é—­é˜²ç«å¢™
 		1.firewall-cmd --zone=public --add-port=80/tcp --permanent
 		2.firewall-cmd --reload
-	4.ÖØÆğredis
+	4.é‡èµ·redis
 	
-ËÄ¡¢ÉèÖÃ¿ª»úÆô¶¯
-	1.ĞŞ¸Ä/etc/init.d/redis ÎÄ¼ş
-			#!/bin/sh
-			# chkconfig: 2345 90 10  
-			# description: Start and Stop redis
-			# Simple Redis init.d script conceived to work on Linux systems
-			# as it does use of the /proc filesystem.
-			
-			### BEGIN INIT INFO
-			# Provides:     redis_6379
-			# Default-Start:        2 3 4 5
-			# Default-Stop:         0 1 6
-			# Short-Description:    Redis data structure server
-			# Description:          Redis data structure server. See https://redis.io
-			### END INIT INFO
-			
-			REDISPORT=6379
-			EXEC=redis-server
-			CLIEXEC=redis-cli
-			
-			PIDFILE=/var/run/redis_${REDISPORT}.pid
-			CONF="/etc/redis.conf"
-			
-			case "$1" in
-			    start)
-			        if [ -f $PIDFILE ]
-			        then
-			                echo "$PIDFILE exists, process is already running or crashed"
-			        else
-			                echo "Starting Redis server..."
-			                $EXEC $CONF
-			        fi
-			        ;;
-			    stop)
-			        if [ ! -f $PIDFILE ]
-			        then
-			                echo "$PIDFILE does not exist, process is not running"
-			        else
-			                PID=$(cat $PIDFILE)
-			                echo "Stopping ..."
-			                $CLIEXEC -p $REDISPORT shutdown
-			                while [ -x /proc/${PID} ]
-			                do
-			                    echo "Waiting for Redis to shutdown ..."
-			                    sleep 1
-			                done
-			                echo "Redis stopped"
-			        fi
-			        ;;
-			    *)
-			        echo "Please use start or stop as first argument"
-			        ;;
-			esac
-			
-		2.Ìí¼Óredis·şÎñ
-			chkconfig --add redis
-			
-		3.ÉèÎª¿ª»úÆô¶¯
-			chkconfig redis on
-			
-		4.´ò¿ªredisÃüÁî
-			service redis start
-			
-		5.¹Ø±ÕredisÃüÁî
-			service redis stop
+##### å››ã€è®¾ç½®å¼€æœºå¯åŠ¨
+##### 1.ä¿®æ”¹/etc/init.d/redis æ–‡ä»¶
+```shell
+#!/bin/sh
+# chkconfig: 2345 90 10  
+# description: Start and Stop redis
+# Simple Redis init.d script conceived to work on Linux systems
+# as it does use of the /proc filesystem.
+
+### BEGIN INIT INFO
+# Provides:     redis_6379
+# Default-Start:        2 3 4 5
+# Default-Stop:         0 1 6
+# Short-Description:    Redis data structure server
+# Description:          Redis data structure server. See https://redis.io
+### END INIT INFO
+
+REDISPORT=6379
+EXEC=redis-server
+CLIEXEC=redis-cli
+
+PIDFILE=/var/run/redis_${REDISPORT}.pid
+CONF="/etc/redis.conf"
+
+case "$1" in
+    start)
+        if [ -f $PIDFILE ]
+        then
+                echo "$PIDFILE exists, process is already running or crashed"
+        else
+                echo "Starting Redis server..."
+                $EXEC $CONF
+        fi
+        ;;
+    stop)
+        if [ ! -f $PIDFILE ]
+        then
+                echo "$PIDFILE does not exist, process is not running"
+        else
+                PID=$(cat $PIDFILE)
+                echo "Stopping ..."
+                $CLIEXEC -p $REDISPORT shutdown
+                while [ -x /proc/${PID} ]
+                do
+                    echo "Waiting for Redis to shutdown ..."
+                    sleep 1
+                done
+                echo "Redis stopped"
+        fi
+        ;;
+    *)
+        echo "Please use start or stop as first argument"
+        ;;
+esac
+```	
+###### 2.æ·»åŠ redisæœåŠ¡
+	chkconfig --add redis			
+###### 3.è®¾ä¸ºå¼€æœºå¯åŠ¨
+	chkconfig redis on			
+###### 4.æ‰“å¼€rediså‘½ä»¤
+	service redis start			
+###### 5.å…³é—­rediså‘½ä»¤
+	service redis stop
