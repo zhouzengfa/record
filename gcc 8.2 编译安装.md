@@ -1,29 +1,29 @@
-1.ÏÂÔØ°²×°°ü
+#### 1.ä¸‹è½½å®‰è£…åŒ…
 	wget http://ftp.tsukuba.wide.ad.jp/software/gcc/releases/gcc-8.2.0/gcc-8.2.0.tar.gz
 	
-2.½âÑ¹
+#### 2.è§£å‹
 	tar -zxv gcc-8.2.0.tar.gz 
 
-3.½øÈë½âÑ¹ºóÄ¿Â¼
+#### 3.è¿›å…¥è§£å‹åç›®å½•
 	cd gcc-8.2.0/
 
-4.ÏÂÔØÒÀÀµ°ü
+#### 4.ä¸‹è½½ä¾èµ–åŒ…
 	./contrib/download_prerequisites 
 	
-5.ÅäÖÃ
+#### 5.é…ç½®
 	./configure --prefix=/usr/local/gcc --enable-bootstrap --enable-checking=release --enable-languages=c,c++ --disable-multilib
 	
-6.±àÒë
+#### 6.ç¼–è¯‘
 	make -j 8
 
-7.°²×°
+#### 7.å®‰è£…
 	make install
 
-8.ÉèÖÃ»·¾³±äÁ¿
+#### 8.è®¾ç½®ç¯å¢ƒå˜é‡
 	1. vim /etc/profile
-	2. ÔÚ×îºó¼ÓÈë
+	2. åœ¨æœ€ååŠ å…¥
 		export PATH=/usr/local/gcc-8.2.0/bin:$PATH
 	3. source /etc/profile
 	
-9. ÑéÖ¤
+#### 9. éªŒè¯
 	g++ -v
