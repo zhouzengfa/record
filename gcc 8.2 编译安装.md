@@ -18,12 +18,19 @@
 
 #### 7.安装
 	make install
-
-#### 8.设置环境变量
+#### 8.GLBCXX重置
+```
+find / -name libstdc++.so.6*
+cp /usr/local/gcc/lib64/libstdc++.so.6.0.25 /usr/lib64/libstdc++.so.6.0.25
+mv /usr/lib64/libstdc++.so.6 /usr/lib64/libstdc++.so.6.old
+ln -s /usr/lib64/libstdc++.so.6.0.25 /usr/lib64/libstdc++.so.6
+strings /usr/lib64/libstdc++.so.6 | grep GLIBCXX
+```
+#### 9.设置环境变量
 	1. vim /etc/profile
 	2. 在最后加入
-		export PATH=/usr/local/gcc-8.2.0/bin:$PATH
+		export PATH=/usr/local/gcc/bin:$PATH
 	3. source /etc/profile
 	
-#### 9. 验证
+#### 10. 验证
 	g++ -v
