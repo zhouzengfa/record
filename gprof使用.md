@@ -5,6 +5,9 @@
 ##### 2. 运行编译后的程序
     和运行普通程序一样，只是运行后会产生一个gmon.out文件
 ##### 3. 安装gprof2dot
+	yum install -y python36
+	curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
+	python36 get-pip.py 
 	pip install gprof2dot
 
 ##### 4. 安装graphviz
