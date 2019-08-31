@@ -44,12 +44,20 @@ slowlog get 1
 `config set slowlog-log-slower-than 5000`
 
 * 限制客户端连接数
-因为Redis是单线程模型(只能使用单核)，来处理所有客户端的请求， 但由于客户端连接数的增长，处理请求的线程资源开始降低分配给单个客户端连接的处理时间，这时每个客户端需要花费更多的时间去等待Redis共享服务的响应。在Redis-cli工具中输入info clients可以查看到当前实例的所有客户端连接信息。
+因为`Redis`是单线程模型(只能使用单核)，来处理所有客户端的请求， 但由于客户端连接数的增长，处理请求的线程资源开始降低分配给单个客户端连接的处理时间，这时每个客户端需要花费更多的时间去等待`Redis`共享服务的响应。在`Redis-cli`工具中输入`info clients`可以查看到当前实例的所有客户端连接信息。
 
 * 加强内存管理
- 较少的内存会引起Redis延迟时间增加。如果Redis占用内存超出系统可用内存，操作系统会把Redis进程的一部分数据，从物理内存交换到硬盘上，内存交换会明显的增加延迟时间。可用`info memory`查看redis内存占用情况
+ 较少的内存会引起`Redis`延迟时间增加。如果`Redis`占用内存超出系统可用内存，操作系统会把Redis进程的一部分数据，从物理内存交换到硬盘上，内存交换会明显的增加延迟时间。可用`info memory`查看`redis`内存占用情况
 
+#### 三、持久化设置
 
+开启AOF时应当关闭AOF自动rewrite，并在crontab中启动在业务低峰时段进行的bgrewrite。 如果在一台机器上部署多个redis实例，则关闭RDB和AOF的自动保存（save "", auto-aof-rewrite-percentage 0），通过crontab定时调用保存：
+```
+m h * * * redis-cli -p <port> BGSAVE
+m h */4 * * redis-cli -p <port> BGREWRITEAOF
+```
+持久化的部署规划上，如果为主从复制关系，建议主关闭持久化。
 
 参考文档：
-https://www.cnblogs.com/chenpingzhao/p/6859041.html
+* https://www.cnblogs.com/chenpingzhao/p/6859041.html
+* https://www.w3cschool.cn/redis_all_about/redis_all_about-q85x26wm.html
