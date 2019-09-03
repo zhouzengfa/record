@@ -17,5 +17,6 @@
 	gprof 可执行文件| gprof2dot -n0 -e0 -s | dot -Tsvg -o output.svg
 
 ##### 6.用网页打开。output.svg
+
 ###### 参考
 1.https://github.com/jrfonseca/gprof2dot
