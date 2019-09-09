@@ -45,7 +45,7 @@ crontab的使用就是编辑配置文件。
 * 23-7/1 * * * /usr/local/etc/rc.d/lighttpd restart
 
 #每一小时重启apache
-* */1 * * * /usr/local/etc/rc.d/lighttpd restart
+*/60 * * * * /usr/local/etc/rc.d/lighttpd restart
 
 #每月的4号与每周一到周三的11点重启apache
 0 11 4 * mon-wed /usr/local/etc/rc.d/lighttpd restart
