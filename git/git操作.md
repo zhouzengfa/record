@@ -21,6 +21,9 @@
 	git branch -vv
 #### 7. 查看当前远程仓库信息
 	git remote -vv
+#### 8. 补充提交
+	git commit -m "新的注释" --amend
+
 ## 二、tag操作
 #### 1. 产生本地tag
 	git tag tag-name
@@ -48,7 +51,7 @@
 #### 2. 查看本地分支
 	git branch
 #### 3. 创建分支
-	git branch test
+	git branch test [commitid or master]
 #### 4. 推送分支到远程 
 	git push origin test
 #### 5. 切换分支
