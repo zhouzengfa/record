@@ -60,7 +60,11 @@
 	 git branch -d branch-name
 #### 7. 删除远程分支
 	git push origin :branch-name
-
+#### 8. 合并游离分支
+```shell
+git reflog #查看提交日志，找到自己在游离分支上提交的临时id
+git merge id(eef5) #合并游离分支代码到当前分支上来
+```
 ## 四、submodule
 #### 1. 递归clone子模块
 	 git clone -b develop --recursive git@gitlab.shinezoneserver.com:SolidPoly_Gailias_Server/SolidPoly_Gailias_Server.git submode-test
