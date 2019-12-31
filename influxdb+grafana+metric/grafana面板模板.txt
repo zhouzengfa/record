@@ -1,0 +1,7587 @@
+{
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": "-- Grafana --",
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "gnetId": null,
+  "graphTooltip": 0,
+  "id": 1,
+  "iteration": 1577775325313,
+  "links": [],
+  "panels": [
+    {
+      "collapsed": false,
+      "datasource": null,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 0
+      },
+      "id": 17,
+      "panels": [],
+      "title": "连接数",
+      "type": "row"
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "InfluxDB",
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 7,
+        "w": 12,
+        "x": 0,
+        "y": 1
+      },
+      "hiddenSeries": false,
+      "id": 18,
+      "legend": {
+        "alignAsTable": false,
+        "avg": false,
+        "current": true,
+        "max": true,
+        "min": true,
+        "rightSide": false,
+        "show": true,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 1,
+      "nullPointMode": "null",
+      "options": {
+        "dataLinks": []
+      },
+      "percentage": false,
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "alias": "数量",
+          "groupBy": [
+            {
+              "params": [
+                "$one_second"
+              ],
+              "type": "time"
+            }
+          ],
+          "measurement": "externalChannelNum",
+          "orderByTime": "ASC",
+          "policy": "seven_days",
+          "query": "SELECT sum(\"value\") FROM \"autogen\".\"mainPool_CurrentFreeThreadCount\" WHERE (\"region\" =~ /^$region$/ AND \"server\" =~ /^$server$/) AND $timeFilter GROUP BY time($__interval)",
+          "rawQuery": false,
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "sum"
+              },
+              {
+                "params": [
+                  "接收字节数量"
+                ],
+                "type": "alias"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "region",
+              "operator": "=~",
+              "value": "/^$region$/"
+            },
+            {
+              "condition": "AND",
+              "key": "server",
+              "operator": "=~",
+              "value": "/^$server$/"
+            },
+            {
+              "condition": "AND",
+              "key": "node",
+              "operator": "=~",
+              "value": "/^$node$/"
+            }
+          ]
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "外部连接数",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "decimals": 0,
+          "format": "short",
+          "label": "数量",
+          "logBase": 1,
+          "max": null,
+          "min": "0",
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": false
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "InfluxDB",
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 7,
+        "w": 12,
+        "x": 12,
+        "y": 1
+      },
+      "hiddenSeries": false,
+      "id": 19,
+      "legend": {
+        "alignAsTable": false,
+        "avg": false,
+        "current": true,
+        "max": true,
+        "min": true,
+        "rightSide": false,
+        "show": true,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 1,
+      "nullPointMode": "null",
+      "options": {
+        "dataLinks": []
+      },
+      "percentage": false,
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "alias": "数量",
+          "groupBy": [
+            {
+              "params": [
+                "$one_second"
+              ],
+              "type": "time"
+            }
+          ],
+          "measurement": "internalChannelNum",
+          "orderByTime": "ASC",
+          "policy": "seven_days",
+          "query": "SELECT sum(\"value\") FROM \"autogen\".\"mainPool_CurrentFreeThreadCount\" WHERE (\"region\" =~ /^$region$/ AND \"server\" =~ /^$server$/) AND $timeFilter GROUP BY time($__interval)",
+          "rawQuery": false,
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "sum"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "region",
+              "operator": "=~",
+              "value": "/^$region$/"
+            },
+            {
+              "condition": "AND",
+              "key": "server",
+              "operator": "=~",
+              "value": "/^$server$/"
+            },
+            {
+              "condition": "AND",
+              "key": "node",
+              "operator": "=~",
+              "value": "/^$node$/"
+            }
+          ]
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "内部连接数",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "decimals": 0,
+          "format": "short",
+          "label": "数量",
+          "logBase": 1,
+          "max": null,
+          "min": "0",
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": false
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "collapsed": false,
+      "datasource": null,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 8
+      },
+      "id": 30,
+      "panels": [],
+      "title": "CPU、内存",
+      "type": "row"
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "InfluxDB",
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 7,
+        "w": 12,
+        "x": 0,
+        "y": 9
+      },
+      "hiddenSeries": false,
+      "id": 31,
+      "legend": {
+        "alignAsTable": false,
+        "avg": false,
+        "current": true,
+        "max": true,
+        "min": true,
+        "rightSide": true,
+        "show": true,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 1,
+      "nullPointMode": "null",
+      "options": {
+        "dataLinks": []
+      },
+      "percentage": false,
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [
+        {
+          "alias": "CPU总数",
+          "yaxis": 2
+        }
+      ],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "alias": "CPU总数",
+          "groupBy": [
+            {
+              "params": [
+                "$one_second"
+              ],
+              "type": "time"
+            }
+          ],
+          "measurement": "cupnum",
+          "orderByTime": "ASC",
+          "policy": "seven_days",
+          "query": "SELECT sum(\"value\") FROM \"autogen\".\"mainPool_CurrentFreeThreadCount\" WHERE (\"region\" =~ /^$region$/ AND \"server\" =~ /^$server$/) AND $timeFilter GROUP BY time($__interval)",
+          "rawQuery": false,
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "sum"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "region",
+              "operator": "=~",
+              "value": "/^$region$/"
+            },
+            {
+              "condition": "AND",
+              "key": "server",
+              "operator": "=~",
+              "value": "/^$server$/"
+            },
+            {
+              "condition": "AND",
+              "key": "node",
+              "operator": "=~",
+              "value": "/^$node$/"
+            }
+          ]
+        },
+        {
+          "alias": "当前进程使用量",
+          "groupBy": [
+            {
+              "params": [
+                "$one_second"
+              ],
+              "type": "time"
+            }
+          ],
+          "measurement": "pidusedcpu",
+          "orderByTime": "ASC",
+          "policy": "seven_days",
+          "query": "SELECT sum(\"value\") FROM \"autogen\".\"mainPool_CurrentFreeThreadCount\" WHERE (\"region\" =~ /^$region$/ AND \"server\" =~ /^$server$/) AND $timeFilter GROUP BY time($__interval)",
+          "rawQuery": false,
+          "refId": "B",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "sum"
+              },
+              {
+                "params": [
+                  " / 1000.0"
+                ],
+                "type": "math"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "region",
+              "operator": "=~",
+              "value": "/^$region$/"
+            },
+            {
+              "condition": "AND",
+              "key": "server",
+              "operator": "=~",
+              "value": "/^$server$/"
+            },
+            {
+              "condition": "AND",
+              "key": "node",
+              "operator": "=~",
+              "value": "/^$node$/"
+            }
+          ]
+        },
+        {
+          "alias": "CPU使用总量",
+          "groupBy": [
+            {
+              "params": [
+                "$one_second"
+              ],
+              "type": "time"
+            }
+          ],
+          "measurement": "cpuper",
+          "orderByTime": "ASC",
+          "policy": "seven_days",
+          "query": "SELECT sum(\"value\") FROM \"autogen\".\"mainPool_CurrentFreeThreadCount\" WHERE (\"region\" =~ /^$region$/ AND \"server\" =~ /^$server$/) AND $timeFilter GROUP BY time($__interval)",
+          "rawQuery": false,
+          "refId": "C",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "sum"
+              },
+              {
+                "params": [
+                  " / 1000.0"
+                ],
+                "type": "math"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "region",
+              "operator": "=~",
+              "value": "/^$region$/"
+            },
+            {
+              "condition": "AND",
+              "key": "server",
+              "operator": "=~",
+              "value": "/^$server$/"
+            },
+            {
+              "condition": "AND",
+              "key": "node",
+              "operator": "=~",
+              "value": "/^$node$/"
+            }
+          ]
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "CPU",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "decimals": null,
+          "format": "percent",
+          "label": "百分比",
+          "logBase": 1,
+          "max": null,
+          "min": "0",
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": "个数",
+          "logBase": 1,
+          "max": null,
+          "min": "0",
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "InfluxDB",
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 7,
+        "w": 12,
+        "x": 12,
+        "y": 9
+      },
+      "hiddenSeries": false,
+      "id": 32,
+      "legend": {
+        "alignAsTable": false,
+        "avg": false,
+        "current": true,
+        "max": true,
+        "min": true,
+        "rightSide": true,
+        "show": true,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 1,
+      "nullPointMode": "null",
+      "options": {
+        "dataLinks": []
+      },
+      "percentage": false,
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "alias": "内存总量",
+          "groupBy": [
+            {
+              "params": [
+                "$one_second"
+              ],
+              "type": "time"
+            }
+          ],
+          "measurement": "totalmemory",
+          "orderByTime": "ASC",
+          "policy": "seven_days",
+          "query": "SELECT sum(\"value\") FROM \"autogen\".\"mainPool_CurrentFreeThreadCount\" WHERE (\"region\" =~ /^$region$/ AND \"server\" =~ /^$server$/) AND $timeFilter GROUP BY time($__interval)",
+          "rawQuery": false,
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "sum"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "region",
+              "operator": "=~",
+              "value": "/^$region$/"
+            },
+            {
+              "condition": "AND",
+              "key": "server",
+              "operator": "=~",
+              "value": "/^$server$/"
+            },
+            {
+              "condition": "AND",
+              "key": "node",
+              "operator": "=~",
+              "value": "/^$node$/"
+            }
+          ]
+        },
+        {
+          "alias": "空闲内存",
+          "groupBy": [
+            {
+              "params": [
+                "$one_second"
+              ],
+              "type": "time"
+            }
+          ],
+          "measurement": "freememory",
+          "orderByTime": "ASC",
+          "policy": "seven_days",
+          "query": "SELECT sum(\"value\") FROM \"autogen\".\"mainPool_CurrentFreeThreadCount\" WHERE (\"region\" =~ /^$region$/ AND \"server\" =~ /^$server$/) AND $timeFilter GROUP BY time($__interval)",
+          "rawQuery": false,
+          "refId": "B",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "sum"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "region",
+              "operator": "=~",
+              "value": "/^$region$/"
+            },
+            {
+              "condition": "AND",
+              "key": "server",
+              "operator": "=~",
+              "value": "/^$server$/"
+            },
+            {
+              "condition": "AND",
+              "key": "node",
+              "operator": "=~",
+              "value": "/^$node$/"
+            }
+          ]
+        },
+        {
+          "alias": "已用内存",
+          "groupBy": [
+            {
+              "params": [
+                "$one_second"
+              ],
+              "type": "time"
+            }
+          ],
+          "measurement": "usedmemory",
+          "orderByTime": "ASC",
+          "policy": "seven_days",
+          "query": "SELECT sum(\"value\") FROM \"autogen\".\"mainPool_CurrentFreeThreadCount\" WHERE (\"region\" =~ /^$region$/ AND \"server\" =~ /^$server$/) AND $timeFilter GROUP BY time($__interval)",
+          "rawQuery": false,
+          "refId": "D",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "sum"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "region",
+              "operator": "=~",
+              "value": "/^$region$/"
+            },
+            {
+              "condition": "AND",
+              "key": "server",
+              "operator": "=~",
+              "value": "/^$server$/"
+            },
+            {
+              "condition": "AND",
+              "key": "node",
+              "operator": "=~",
+              "value": "/^$node$/"
+            }
+          ]
+        },
+        {
+          "alias": "当前进程使用量",
+          "groupBy": [
+            {
+              "params": [
+                "$one_second"
+              ],
+              "type": "time"
+            }
+          ],
+          "measurement": "pidusedmemory",
+          "orderByTime": "ASC",
+          "policy": "seven_days",
+          "query": "SELECT sum(\"value\") FROM \"autogen\".\"mainPool_CurrentFreeThreadCount\" WHERE (\"region\" =~ /^$region$/ AND \"server\" =~ /^$server$/) AND $timeFilter GROUP BY time($__interval)",
+          "rawQuery": false,
+          "refId": "C",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "sum"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "region",
+              "operator": "=~",
+              "value": "/^$region$/"
+            },
+            {
+              "condition": "AND",
+              "key": "server",
+              "operator": "=~",
+              "value": "/^$server$/"
+            },
+            {
+              "condition": "AND",
+              "key": "node",
+              "operator": "=~",
+              "value": "/^$node$/"
+            }
+          ]
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Memory",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "decimals": null,
+          "format": "bytes",
+          "label": "KB",
+          "logBase": 1,
+          "max": null,
+          "min": "0",
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": false
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "collapsed": true,
+      "datasource": null,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 16
+      },
+      "id": 27,
+      "panels": [
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "InfluxDB",
+          "fill": 1,
+          "fillGradient": 0,
+          "gridPos": {
+            "h": 7,
+            "w": 12,
+            "x": 0,
+            "y": 3
+          },
+          "hiddenSeries": false,
+          "id": 41,
+          "legend": {
+            "alignAsTable": false,
+            "avg": false,
+            "current": true,
+            "max": false,
+            "min": false,
+            "rightSide": true,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "nullPointMode": "null",
+          "options": {
+            "dataLinks": []
+          },
+          "percentage": false,
+          "pointradius": 2,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [
+            {
+              "alias": "mainTick.每秒心跳次数",
+              "yaxis": 2
+            }
+          ],
+          "spaceLength": 10,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "",
+              "groupBy": [
+                {
+                  "params": [
+                    "$one_second"
+                  ],
+                  "type": "time"
+                }
+              ],
+              "measurement": "mainTick",
+              "orderByTime": "ASC",
+              "policy": "seven_days",
+              "query": "SELECT sum(\"value\") FROM \"autogen\".\"mainPool_CurrentFreeThreadCount\" WHERE (\"region\" =~ /^$region$/ AND \"server\" =~ /^$server$/) AND $timeFilter GROUP BY time($__interval)",
+              "rawQuery": false,
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "count"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "sum"
+                  },
+                  {
+                    "params": [
+                      "$one_second"
+                    ],
+                    "type": "non_negative_derivative"
+                  },
+                  {
+                    "params": [
+                      "每秒心跳次数"
+                    ],
+                    "type": "alias"
+                  }
+                ],
+                [
+                  {
+                    "params": [
+                      "max"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "max"
+                  },
+                  {
+                    "params": [
+                      "最长时间"
+                    ],
+                    "type": "alias"
+                  }
+                ],
+                [
+                  {
+                    "params": [
+                      "min"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "min"
+                  },
+                  {
+                    "params": [
+                      "最短时间"
+                    ],
+                    "type": "alias"
+                  }
+                ],
+                [
+                  {
+                    "params": [
+                      "mean"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  },
+                  {
+                    "params": [
+                      "平均时间"
+                    ],
+                    "type": "alias"
+                  }
+                ],
+                [
+                  {
+                    "params": [
+                      "75thPer"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  },
+                  {
+                    "params": [
+                      "75%时间"
+                    ],
+                    "type": "alias"
+                  }
+                ],
+                [
+                  {
+                    "params": [
+                      "95thPer"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  },
+                  {
+                    "params": [
+                      "95%时间"
+                    ],
+                    "type": "alias"
+                  }
+                ],
+                [
+                  {
+                    "params": [
+                      "98thPer"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  },
+                  {
+                    "params": [
+                      "98%时间"
+                    ],
+                    "type": "alias"
+                  }
+                ],
+                [
+                  {
+                    "params": [
+                      "99thPer"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  },
+                  {
+                    "params": [
+                      "99%时间"
+                    ],
+                    "type": "alias"
+                  }
+                ],
+                [
+                  {
+                    "params": [
+                      "999thPer"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  },
+                  {
+                    "params": [
+                      "999%时间"
+                    ],
+                    "type": "alias"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "region",
+                  "operator": "=~",
+                  "value": "/^$region$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "server",
+                  "operator": "=~",
+                  "value": "/^$server$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "node",
+                  "operator": "=~",
+                  "value": "/^$node$/"
+                }
+              ]
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeRegions": [],
+          "timeShift": null,
+          "title": "心跳时间",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "decimals": 0,
+              "format": "ns",
+              "label": "时间",
+              "logBase": 1,
+              "max": null,
+              "min": "0",
+              "show": true
+            },
+            {
+              "decimals": 0,
+              "format": "short",
+              "label": "数量",
+              "logBase": 1,
+              "max": null,
+              "min": "0",
+              "show": true
+            }
+          ],
+          "yaxis": {
+            "align": true,
+            "alignLevel": null
+          }
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "InfluxDB",
+          "fill": 1,
+          "fillGradient": 0,
+          "gridPos": {
+            "h": 7,
+            "w": 12,
+            "x": 12,
+            "y": 3
+          },
+          "hiddenSeries": false,
+          "id": 42,
+          "legend": {
+            "alignAsTable": false,
+            "avg": false,
+            "current": true,
+            "max": false,
+            "min": false,
+            "rightSide": true,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "nullPointMode": "null",
+          "options": {
+            "dataLinks": []
+          },
+          "percentage": false,
+          "pointradius": 2,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [
+            {
+              "alias": "mainTick.当前每秒心跳次数",
+              "yaxis": 2
+            }
+          ],
+          "spaceLength": 10,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "",
+              "groupBy": [
+                {
+                  "params": [
+                    "$one_second"
+                  ],
+                  "type": "time"
+                }
+              ],
+              "measurement": "mainTick",
+              "orderByTime": "ASC",
+              "policy": "seven_days",
+              "query": "SELECT sum(\"value\") FROM \"autogen\".\"mainPool_CurrentFreeThreadCount\" WHERE (\"region\" =~ /^$region$/ AND \"server\" =~ /^$server$/) AND $timeFilter GROUP BY time($__interval)",
+              "rawQuery": false,
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "count"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "sum"
+                  },
+                  {
+                    "params": [
+                      "$one_second"
+                    ],
+                    "type": "non_negative_derivative"
+                  },
+                  {
+                    "params": [
+                      "当前每秒心跳次数"
+                    ],
+                    "type": "alias"
+                  }
+                ],
+                [
+                  {
+                    "params": [
+                      "metermean"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  },
+                  {
+                    "params": [
+                      "平均速率"
+                    ],
+                    "type": "alias"
+                  }
+                ],
+                [
+                  {
+                    "params": [
+                      "oneMinute"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  },
+                  {
+                    "params": [
+                      "1分钟内速率"
+                    ],
+                    "type": "alias"
+                  }
+                ],
+                [
+                  {
+                    "params": [
+                      "fiveMinute"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  },
+                  {
+                    "params": [
+                      "5分钟内速率"
+                    ],
+                    "type": "alias"
+                  }
+                ],
+                [
+                  {
+                    "params": [
+                      "fifteenMinute"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  },
+                  {
+                    "params": [
+                      "15分钟内速率"
+                    ],
+                    "type": "alias"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "region",
+                  "operator": "=~",
+                  "value": "/^$region$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "server",
+                  "operator": "=~",
+                  "value": "/^$server$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "node",
+                  "operator": "=~",
+                  "value": "/^$node$/"
+                }
+              ]
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeRegions": [],
+          "timeShift": null,
+          "title": "心跳速率",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "decimals": null,
+              "format": "cps",
+              "label": "速率（次数  / 秒）",
+              "logBase": 1,
+              "max": null,
+              "min": "0",
+              "show": true
+            },
+            {
+              "decimals": 0,
+              "format": "short",
+              "label": "次数",
+              "logBase": 1,
+              "max": null,
+              "min": "0",
+              "show": true
+            }
+          ],
+          "yaxis": {
+            "align": true,
+            "alignLevel": null
+          }
+        }
+      ],
+      "title": "服务器心跳",
+      "type": "row"
+    },
+    {
+      "collapsed": true,
+      "datasource": null,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 17
+      },
+      "id": 40,
+      "panels": [
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "InfluxDB",
+          "fill": 1,
+          "fillGradient": 0,
+          "gridPos": {
+            "h": 7,
+            "w": 12,
+            "x": 0,
+            "y": 11
+          },
+          "hiddenSeries": false,
+          "id": 25,
+          "legend": {
+            "alignAsTable": false,
+            "avg": false,
+            "current": true,
+            "max": false,
+            "min": false,
+            "rightSide": true,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "nullPointMode": "null",
+          "options": {
+            "dataLinks": []
+          },
+          "percentage": false,
+          "pointradius": 2,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [
+            {
+              "alias": "pushTimerTime.数量",
+              "yaxis": 2
+            }
+          ],
+          "spaceLength": 10,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "",
+              "groupBy": [
+                {
+                  "params": [
+                    "$one_second"
+                  ],
+                  "type": "time"
+                }
+              ],
+              "measurement": "pushTimerTime",
+              "orderByTime": "ASC",
+              "policy": "seven_days",
+              "query": "SELECT sum(\"value\") FROM \"autogen\".\"mainPool_CurrentFreeThreadCount\" WHERE (\"region\" =~ /^$region$/ AND \"server\" =~ /^$server$/) AND $timeFilter GROUP BY time($__interval)",
+              "rawQuery": false,
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "count"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "sum"
+                  },
+                  {
+                    "params": [
+                      "$one_second"
+                    ],
+                    "type": "non_negative_derivative"
+                  },
+                  {
+                    "params": [
+                      "数量"
+                    ],
+                    "type": "alias"
+                  }
+                ],
+                [
+                  {
+                    "params": [
+                      "max"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "max"
+                  },
+                  {
+                    "params": [
+                      "最长时间"
+                    ],
+                    "type": "alias"
+                  }
+                ],
+                [
+                  {
+                    "params": [
+                      "min"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "min"
+                  },
+                  {
+                    "params": [
+                      "最短时间"
+                    ],
+                    "type": "alias"
+                  }
+                ],
+                [
+                  {
+                    "params": [
+                      "mean"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  },
+                  {
+                    "params": [
+                      "平均时间"
+                    ],
+                    "type": "alias"
+                  }
+                ],
+                [
+                  {
+                    "params": [
+                      "75thPer"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  },
+                  {
+                    "params": [
+                      "75%时间"
+                    ],
+                    "type": "alias"
+                  }
+                ],
+                [
+                  {
+                    "params": [
+                      "95thPer"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  },
+                  {
+                    "params": [
+                      "95%时间"
+                    ],
+                    "type": "alias"
+                  }
+                ],
+                [
+                  {
+                    "params": [
+                      "98thPer"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  },
+                  {
+                    "params": [
+                      "98%时间"
+                    ],
+                    "type": "alias"
+                  }
+                ],
+                [
+                  {
+                    "params": [
+                      "99thPer"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  },
+                  {
+                    "params": [
+                      "99%时间"
+                    ],
+                    "type": "alias"
+                  }
+                ],
+                [
+                  {
+                    "params": [
+                      "999thPer"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  },
+                  {
+                    "params": [
+                      "999%时间"
+                    ],
+                    "type": "alias"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "region",
+                  "operator": "=~",
+                  "value": "/^$region$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "server",
+                  "operator": "=~",
+                  "value": "/^$server$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "node",
+                  "operator": "=~",
+                  "value": "/^$node$/"
+                }
+              ]
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeRegions": [],
+          "timeShift": null,
+          "title": "Push Timer 时长",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "decimals": 0,
+              "format": "ns",
+              "label": "时间",
+              "logBase": 1,
+              "max": null,
+              "min": "0",
+              "show": true
+            },
+            {
+              "decimals": 0,
+              "format": "short",
+              "label": "数量",
+              "logBase": 1,
+              "max": null,
+              "min": "0",
+              "show": true
+            }
+          ],
+          "yaxis": {
+            "align": true,
+            "alignLevel": null
+          }
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "InfluxDB",
+          "fill": 1,
+          "fillGradient": 0,
+          "gridPos": {
+            "h": 7,
+            "w": 12,
+            "x": 12,
+            "y": 11
+          },
+          "hiddenSeries": false,
+          "id": 43,
+          "legend": {
+            "alignAsTable": false,
+            "avg": false,
+            "current": true,
+            "max": false,
+            "min": false,
+            "rightSide": true,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "nullPointMode": "null",
+          "options": {
+            "dataLinks": []
+          },
+          "percentage": false,
+          "pointradius": 2,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [
+            {
+              "alias": "popTimerTime.数量",
+              "yaxis": 2
+            }
+          ],
+          "spaceLength": 10,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "",
+              "groupBy": [
+                {
+                  "params": [
+                    "$one_second"
+                  ],
+                  "type": "time"
+                }
+              ],
+              "measurement": "popTimerTime",
+              "orderByTime": "ASC",
+              "policy": "seven_days",
+              "query": "SELECT sum(\"value\") FROM \"autogen\".\"mainPool_CurrentFreeThreadCount\" WHERE (\"region\" =~ /^$region$/ AND \"server\" =~ /^$server$/) AND $timeFilter GROUP BY time($__interval)",
+              "rawQuery": false,
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "count"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "sum"
+                  },
+                  {
+                    "params": [
+                      "$one_second"
+                    ],
+                    "type": "non_negative_derivative"
+                  },
+                  {
+                    "params": [
+                      "数量"
+                    ],
+                    "type": "alias"
+                  }
+                ],
+                [
+                  {
+                    "params": [
+                      "max"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "max"
+                  },
+                  {
+                    "params": [
+                      "最长时间"
+                    ],
+                    "type": "alias"
+                  }
+                ],
+                [
+                  {
+                    "params": [
+                      "min"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "min"
+                  },
+                  {
+                    "params": [
+                      "最短时间"
+                    ],
+                    "type": "alias"
+                  }
+                ],
+                [
+                  {
+                    "params": [
+                      "mean"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  },
+                  {
+                    "params": [
+                      "平均时间"
+                    ],
+                    "type": "alias"
+                  }
+                ],
+                [
+                  {
+                    "params": [
+                      "75thPer"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  },
+                  {
+                    "params": [
+                      "75%时间"
+                    ],
+                    "type": "alias"
+                  }
+                ],
+                [
+                  {
+                    "params": [
+                      "95thPer"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  },
+                  {
+                    "params": [
+                      "95%时间"
+                    ],
+                    "type": "alias"
+                  }
+                ],
+                [
+                  {
+                    "params": [
+                      "98thPer"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  },
+                  {
+                    "params": [
+                      "98%时间"
+                    ],
+                    "type": "alias"
+                  }
+                ],
+                [
+                  {
+                    "params": [
+                      "99thPer"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  },
+                  {
+                    "params": [
+                      "99%时间"
+                    ],
+                    "type": "alias"
+                  }
+                ],
+                [
+                  {
+                    "params": [
+                      "999thPer"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  },
+                  {
+                    "params": [
+                      "999%时间"
+                    ],
+                    "type": "alias"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "region",
+                  "operator": "=~",
+                  "value": "/^$region$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "server",
+                  "operator": "=~",
+                  "value": "/^$server$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "node",
+                  "operator": "=~",
+                  "value": "/^$node$/"
+                }
+              ]
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeRegions": [],
+          "timeShift": null,
+          "title": "Pop Timer 时长",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "decimals": 0,
+              "format": "ns",
+              "label": "时间",
+              "logBase": 1,
+              "max": null,
+              "min": "0",
+              "show": true
+            },
+            {
+              "decimals": 0,
+              "format": "short",
+              "label": "数量",
+              "logBase": 1,
+              "max": null,
+              "min": "0",
+              "show": true
+            }
+          ],
+          "yaxis": {
+            "align": true,
+            "alignLevel": null
+          }
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "InfluxDB",
+          "fill": 1,
+          "fillGradient": 0,
+          "gridPos": {
+            "h": 7,
+            "w": 12,
+            "x": 0,
+            "y": 18
+          },
+          "hiddenSeries": false,
+          "id": 28,
+          "legend": {
+            "alignAsTable": false,
+            "avg": false,
+            "current": true,
+            "max": false,
+            "min": false,
+            "rightSide": true,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "nullPointMode": "null",
+          "options": {
+            "dataLinks": []
+          },
+          "percentage": false,
+          "pointradius": 2,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [
+            {
+              "alias": "popTimerTime.当前每秒次数",
+              "yaxis": 2
+            }
+          ],
+          "spaceLength": 10,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "",
+              "groupBy": [
+                {
+                  "params": [
+                    "$one_second"
+                  ],
+                  "type": "time"
+                }
+              ],
+              "measurement": "pushTimerTime",
+              "orderByTime": "ASC",
+              "policy": "seven_days",
+              "query": "SELECT sum(\"value\") FROM \"autogen\".\"mainPool_CurrentFreeThreadCount\" WHERE (\"region\" =~ /^$region$/ AND \"server\" =~ /^$server$/) AND $timeFilter GROUP BY time($__interval)",
+              "rawQuery": false,
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "count"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "sum"
+                  },
+                  {
+                    "params": [
+                      "$one_second"
+                    ],
+                    "type": "non_negative_derivative"
+                  },
+                  {
+                    "params": [
+                      "当前每秒次数"
+                    ],
+                    "type": "alias"
+                  }
+                ],
+                [
+                  {
+                    "params": [
+                      "metermean"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  },
+                  {
+                    "params": [
+                      "平均速率"
+                    ],
+                    "type": "alias"
+                  }
+                ],
+                [
+                  {
+                    "params": [
+                      "oneMinute"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  },
+                  {
+                    "params": [
+                      "1分钟内速率"
+                    ],
+                    "type": "alias"
+                  }
+                ],
+                [
+                  {
+                    "params": [
+                      "fiveMinute"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  },
+                  {
+                    "params": [
+                      "5分钟内速率"
+                    ],
+                    "type": "alias"
+                  }
+                ],
+                [
+                  {
+                    "params": [
+                      "fifteenMinute"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  },
+                  {
+                    "params": [
+                      "15分钟内速率"
+                    ],
+                    "type": "alias"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "region",
+                  "operator": "=~",
+                  "value": "/^$region$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "server",
+                  "operator": "=~",
+                  "value": "/^$server$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "node",
+                  "operator": "=~",
+                  "value": "/^$node$/"
+                }
+              ]
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeRegions": [],
+          "timeShift": null,
+          "title": "Push Timer 速率",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "decimals": null,
+              "format": "cps",
+              "label": "速率（次数  / 秒）",
+              "logBase": 1,
+              "max": null,
+              "min": "0",
+              "show": true
+            },
+            {
+              "decimals": 0,
+              "format": "short",
+              "label": "次数",
+              "logBase": 1,
+              "max": null,
+              "min": "0",
+              "show": true
+            }
+          ],
+          "yaxis": {
+            "align": true,
+            "alignLevel": null
+          }
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "InfluxDB",
+          "fill": 1,
+          "fillGradient": 0,
+          "gridPos": {
+            "h": 7,
+            "w": 12,
+            "x": 12,
+            "y": 18
+          },
+          "hiddenSeries": false,
+          "id": 44,
+          "legend": {
+            "alignAsTable": false,
+            "avg": false,
+            "current": true,
+            "max": false,
+            "min": false,
+            "rightSide": true,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "nullPointMode": "null",
+          "options": {
+            "dataLinks": []
+          },
+          "percentage": false,
+          "pointradius": 2,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [
+            {
+              "alias": "popTimerTime.当前每秒次数",
+              "yaxis": 2
+            }
+          ],
+          "spaceLength": 10,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "",
+              "groupBy": [
+                {
+                  "params": [
+                    "$one_second"
+                  ],
+                  "type": "time"
+                }
+              ],
+              "measurement": "popTimerTime",
+              "orderByTime": "ASC",
+              "policy": "seven_days",
+              "query": "SELECT sum(\"value\") FROM \"autogen\".\"mainPool_CurrentFreeThreadCount\" WHERE (\"region\" =~ /^$region$/ AND \"server\" =~ /^$server$/) AND $timeFilter GROUP BY time($__interval)",
+              "rawQuery": false,
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "count"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "sum"
+                  },
+                  {
+                    "params": [
+                      "$one_second"
+                    ],
+                    "type": "non_negative_derivative"
+                  },
+                  {
+                    "params": [
+                      "当前每秒次数"
+                    ],
+                    "type": "alias"
+                  }
+                ],
+                [
+                  {
+                    "params": [
+                      "metermean"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  },
+                  {
+                    "params": [
+                      "平均速率"
+                    ],
+                    "type": "alias"
+                  }
+                ],
+                [
+                  {
+                    "params": [
+                      "oneMinute"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  },
+                  {
+                    "params": [
+                      "1分钟内速率"
+                    ],
+                    "type": "alias"
+                  }
+                ],
+                [
+                  {
+                    "params": [
+                      "fiveMinute"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  },
+                  {
+                    "params": [
+                      "5分钟内速率"
+                    ],
+                    "type": "alias"
+                  }
+                ],
+                [
+                  {
+                    "params": [
+                      "fifteenMinute"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  },
+                  {
+                    "params": [
+                      "15分钟内速率"
+                    ],
+                    "type": "alias"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "region",
+                  "operator": "=~",
+                  "value": "/^$region$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "server",
+                  "operator": "=~",
+                  "value": "/^$server$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "node",
+                  "operator": "=~",
+                  "value": "/^$node$/"
+                }
+              ]
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeRegions": [],
+          "timeShift": null,
+          "title": "Pop Timer 速率",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "decimals": null,
+              "format": "cps",
+              "label": "速率（次数  / 秒）",
+              "logBase": 1,
+              "max": null,
+              "min": "0",
+              "show": true
+            },
+            {
+              "decimals": 0,
+              "format": "short",
+              "label": "次数",
+              "logBase": 1,
+              "max": null,
+              "min": "0",
+              "show": true
+            }
+          ],
+          "yaxis": {
+            "align": true,
+            "alignLevel": null
+          }
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "InfluxDB",
+          "fill": 1,
+          "fillGradient": 0,
+          "gridPos": {
+            "h": 8,
+            "w": 24,
+            "x": 0,
+            "y": 25
+          },
+          "hiddenSeries": false,
+          "id": 45,
+          "legend": {
+            "alignAsTable": false,
+            "avg": false,
+            "current": true,
+            "max": true,
+            "min": true,
+            "rightSide": false,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "nullPointMode": "null",
+          "options": {
+            "dataLinks": []
+          },
+          "percentage": false,
+          "pointradius": 2,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [],
+          "spaceLength": 10,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "数量",
+              "groupBy": [
+                {
+                  "params": [
+                    "$one_second"
+                  ],
+                  "type": "time"
+                }
+              ],
+              "measurement": "timerCount",
+              "orderByTime": "ASC",
+              "policy": "seven_days",
+              "query": "SELECT sum(\"value\") FROM \"autogen\".\"mainPool_CurrentFreeThreadCount\" WHERE (\"region\" =~ /^$region$/ AND \"server\" =~ /^$server$/) AND $timeFilter GROUP BY time($__interval)",
+              "rawQuery": false,
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "value"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "sum"
+                  },
+                  {
+                    "params": [
+                      "定时器数量"
+                    ],
+                    "type": "alias"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "region",
+                  "operator": "=~",
+                  "value": "/^$region$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "server",
+                  "operator": "=~",
+                  "value": "/^$server$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "node",
+                  "operator": "=~",
+                  "value": "/^$node$/"
+                }
+              ]
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeRegions": [],
+          "timeShift": null,
+          "title": "定时器数量",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "decimals": 0,
+              "format": "short",
+              "label": "数量",
+              "logBase": 1,
+              "max": null,
+              "min": "0",
+              "show": true
+            },
+            {
+              "format": "short",
+              "label": null,
+              "logBase": 1,
+              "max": null,
+              "min": null,
+              "show": false
+            }
+          ],
+          "yaxis": {
+            "align": false,
+            "alignLevel": null
+          }
+        }
+      ],
+      "title": "定时器",
+      "type": "row"
+    },
+    {
+      "collapsed": true,
+      "datasource": null,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 18
+      },
+      "id": 23,
+      "panels": [
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "InfluxDB",
+          "fill": 1,
+          "fillGradient": 0,
+          "gridPos": {
+            "h": 7,
+            "w": 12,
+            "x": 0,
+            "y": 12
+          },
+          "hiddenSeries": false,
+          "id": 21,
+          "legend": {
+            "alignAsTable": false,
+            "avg": false,
+            "current": true,
+            "max": false,
+            "min": false,
+            "rightSide": true,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "nullPointMode": "null",
+          "options": {
+            "dataLinks": []
+          },
+          "percentage": false,
+          "pointradius": 2,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [
+            {
+              "alias": "handleMessageTime.处理包数量",
+              "yaxis": 2
+            }
+          ],
+          "spaceLength": 10,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "",
+              "groupBy": [
+                {
+                  "params": [
+                    "$one_second"
+                  ],
+                  "type": "time"
+                }
+              ],
+              "measurement": "handleMessageTime",
+              "orderByTime": "ASC",
+              "policy": "seven_days",
+              "query": "SELECT sum(\"value\") FROM \"autogen\".\"mainPool_CurrentFreeThreadCount\" WHERE (\"region\" =~ /^$region$/ AND \"server\" =~ /^$server$/) AND $timeFilter GROUP BY time($__interval)",
+              "rawQuery": false,
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "count"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "sum"
+                  },
+                  {
+                    "params": [
+                      "$one_second"
+                    ],
+                    "type": "non_negative_derivative"
+                  },
+                  {
+                    "params": [
+                      "处理包数量"
+                    ],
+                    "type": "alias"
+                  }
+                ],
+                [
+                  {
+                    "params": [
+                      "max"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "max"
+                  },
+                  {
+                    "params": [
+                      "最大处理时间"
+                    ],
+                    "type": "alias"
+                  }
+                ],
+                [
+                  {
+                    "params": [
+                      "min"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "min"
+                  },
+                  {
+                    "params": [
+                      "最小包处理时间"
+                    ],
+                    "type": "alias"
+                  }
+                ],
+                [
+                  {
+                    "params": [
+                      "mean"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  },
+                  {
+                    "params": [
+                      "平均包处理时间"
+                    ],
+                    "type": "alias"
+                  }
+                ],
+                [
+                  {
+                    "params": [
+                      "75thPer"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  },
+                  {
+                    "params": [
+                      "75%包处理时间"
+                    ],
+                    "type": "alias"
+                  }
+                ],
+                [
+                  {
+                    "params": [
+                      "95thPer"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  },
+                  {
+                    "params": [
+                      "95%包处理时间"
+                    ],
+                    "type": "alias"
+                  }
+                ],
+                [
+                  {
+                    "params": [
+                      "98thPer"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  },
+                  {
+                    "params": [
+                      "98%包处理时间"
+                    ],
+                    "type": "alias"
+                  }
+                ],
+                [
+                  {
+                    "params": [
+                      "99thPer"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  },
+                  {
+                    "params": [
+                      "99%包处理时间"
+                    ],
+                    "type": "alias"
+                  }
+                ],
+                [
+                  {
+                    "params": [
+                      "999thPer"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  },
+                  {
+                    "params": [
+                      "999%包处理时间"
+                    ],
+                    "type": "alias"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "region",
+                  "operator": "=~",
+                  "value": "/^$region$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "server",
+                  "operator": "=~",
+                  "value": "/^$server$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "node",
+                  "operator": "=~",
+                  "value": "/^$node$/"
+                }
+              ]
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeRegions": [],
+          "timeShift": null,
+          "title": "包处理时间",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "decimals": 0,
+              "format": "ns",
+              "label": "时间",
+              "logBase": 1,
+              "max": null,
+              "min": "0",
+              "show": true
+            },
+            {
+              "decimals": null,
+              "format": "short",
+              "label": "数量",
+              "logBase": 1,
+              "max": null,
+              "min": "0",
+              "show": true
+            }
+          ],
+          "yaxis": {
+            "align": true,
+            "alignLevel": null
+          }
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "InfluxDB",
+          "fill": 1,
+          "fillGradient": 0,
+          "gridPos": {
+            "h": 7,
+            "w": 12,
+            "x": 12,
+            "y": 12
+          },
+          "hiddenSeries": false,
+          "id": 24,
+          "legend": {
+            "alignAsTable": false,
+            "avg": false,
+            "current": true,
+            "max": false,
+            "min": false,
+            "rightSide": true,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "nullPointMode": "null",
+          "options": {
+            "dataLinks": []
+          },
+          "percentage": false,
+          "pointradius": 2,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [
+            {
+              "alias": "handleMessageTime.处理包数量",
+              "yaxis": 2
+            }
+          ],
+          "spaceLength": 10,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "",
+              "groupBy": [
+                {
+                  "params": [
+                    "$one_second"
+                  ],
+                  "type": "time"
+                }
+              ],
+              "measurement": "handleMessageTime",
+              "orderByTime": "ASC",
+              "policy": "seven_days",
+              "query": "SELECT sum(\"value\") FROM \"autogen\".\"mainPool_CurrentFreeThreadCount\" WHERE (\"region\" =~ /^$region$/ AND \"server\" =~ /^$server$/) AND $timeFilter GROUP BY time($__interval)",
+              "rawQuery": false,
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "count"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "sum"
+                  },
+                  {
+                    "params": [
+                      "$one_second"
+                    ],
+                    "type": "non_negative_derivative"
+                  },
+                  {
+                    "params": [
+                      "处理包数量"
+                    ],
+                    "type": "alias"
+                  }
+                ],
+                [
+                  {
+                    "params": [
+                      "metermean"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  },
+                  {
+                    "params": [
+                      "平均处理速率"
+                    ],
+                    "type": "alias"
+                  }
+                ],
+                [
+                  {
+                    "params": [
+                      "oneMinute"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  },
+                  {
+                    "params": [
+                      "1分钟内速率"
+                    ],
+                    "type": "alias"
+                  }
+                ],
+                [
+                  {
+                    "params": [
+                      "fiveMinute"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  },
+                  {
+                    "params": [
+                      "5分钟内速率"
+                    ],
+                    "type": "alias"
+                  }
+                ],
+                [
+                  {
+                    "params": [
+                      "fifteenMinute"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  },
+                  {
+                    "params": [
+                      "15分钟内速率"
+                    ],
+                    "type": "alias"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "region",
+                  "operator": "=~",
+                  "value": "/^$region$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "server",
+                  "operator": "=~",
+                  "value": "/^$server$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "node",
+                  "operator": "=~",
+                  "value": "/^$node$/"
+                }
+              ]
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeRegions": [],
+          "timeShift": null,
+          "title": "包处理数量",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "decimals": null,
+              "format": "pps",
+              "label": "速率（包  / 秒）",
+              "logBase": 1,
+              "max": null,
+              "min": "0",
+              "show": true
+            },
+            {
+              "decimals": 0,
+              "format": "short",
+              "label": "数量",
+              "logBase": 1,
+              "max": null,
+              "min": "0",
+              "show": true
+            }
+          ],
+          "yaxis": {
+            "align": true,
+            "alignLevel": null
+          }
+        }
+      ],
+      "title": "包处理时间",
+      "type": "row"
+    },
+    {
+      "collapsed": false,
+      "datasource": null,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 19
+      },
+      "id": 9,
+      "panels": [],
+      "title": "收发数据包",
+      "type": "row"
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "InfluxDB",
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 7,
+        "w": 12,
+        "x": 0,
+        "y": 20
+      },
+      "hiddenSeries": false,
+      "id": 10,
+      "legend": {
+        "alignAsTable": false,
+        "avg": false,
+        "current": true,
+        "max": true,
+        "min": true,
+        "rightSide": true,
+        "show": true,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 1,
+      "nullPointMode": "null",
+      "options": {
+        "dataLinks": []
+      },
+      "percentage": false,
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [
+        {
+          "alias": "receiveBytes.接收字节数量",
+          "yaxis": 2
+        },
+        {
+          "alias": "receiveBytes.接收总字节量",
+          "yaxis": 2
+        }
+      ],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "alias": "",
+          "groupBy": [
+            {
+              "params": [
+                "$one_second"
+              ],
+              "type": "time"
+            }
+          ],
+          "measurement": "receiveBytes",
+          "orderByTime": "ASC",
+          "policy": "seven_days",
+          "query": "SELECT sum(\"value\") FROM \"autogen\".\"mainPool_CurrentFreeThreadCount\" WHERE (\"region\" =~ /^$region$/ AND \"server\" =~ /^$server$/) AND $timeFilter GROUP BY time($__interval)",
+          "rawQuery": false,
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "count"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "sum"
+              },
+              {
+                "params": [
+                  "$one_second"
+                ],
+                "type": "non_negative_derivative"
+              },
+              {
+                "params": [
+                  "接收字节数量"
+                ],
+                "type": "alias"
+              }
+            ],
+            [
+              {
+                "params": [
+                  "mean"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              },
+              {
+                "params": [
+                  "接收字节数量均值"
+                ],
+                "type": "alias"
+              }
+            ],
+            [
+              {
+                "params": [
+                  "oneMinute"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "sum"
+              },
+              {
+                "params": [
+                  "每分钟接收字节速率"
+                ],
+                "type": "alias"
+              }
+            ],
+            [
+              {
+                "params": [
+                  "fiveMinute"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "sum"
+              },
+              {
+                "params": [
+                  "每5分钟接收字节速率"
+                ],
+                "type": "alias"
+              }
+            ],
+            [
+              {
+                "params": [
+                  "fifteenMinute"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "sum"
+              },
+              {
+                "params": [
+                  "每15分钟接收字节速率"
+                ],
+                "type": "alias"
+              }
+            ],
+            [
+              {
+                "params": [
+                  "count"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "sum"
+              },
+              {
+                "params": [
+                  "接收总字节量"
+                ],
+                "type": "alias"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "region",
+              "operator": "=~",
+              "value": "/^$region$/"
+            },
+            {
+              "condition": "AND",
+              "key": "server",
+              "operator": "=~",
+              "value": "/^$server$/"
+            },
+            {
+              "condition": "AND",
+              "key": "node",
+              "operator": "=~",
+              "value": "/^$node$/"
+            }
+          ]
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "接收字节数量",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "decimals": null,
+          "format": "Bps",
+          "label": "速率（字节 / 秒）",
+          "logBase": 1,
+          "max": null,
+          "min": "0",
+          "show": true
+        },
+        {
+          "decimals": 0,
+          "format": "bytes",
+          "label": "字节",
+          "logBase": 1,
+          "max": null,
+          "min": "0",
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "InfluxDB",
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 7,
+        "w": 12,
+        "x": 12,
+        "y": 20
+      },
+      "hiddenSeries": false,
+      "id": 11,
+      "legend": {
+        "alignAsTable": false,
+        "avg": false,
+        "current": true,
+        "max": true,
+        "min": true,
+        "rightSide": true,
+        "show": true,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 1,
+      "nullPointMode": "null",
+      "options": {
+        "dataLinks": []
+      },
+      "percentage": false,
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [
+        {
+          "alias": "sendBytes.发送字节数量",
+          "yaxis": 2
+        },
+        {
+          "alias": "sendBytes.发送字节总量",
+          "yaxis": 2
+        }
+      ],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "alias": "",
+          "groupBy": [
+            {
+              "params": [
+                "$one_second"
+              ],
+              "type": "time"
+            }
+          ],
+          "measurement": "sendBytes",
+          "orderByTime": "ASC",
+          "policy": "seven_days",
+          "query": "SELECT sum(\"value\") FROM \"autogen\".\"mainPool_CurrentFreeThreadCount\" WHERE (\"region\" =~ /^$region$/ AND \"server\" =~ /^$server$/) AND $timeFilter GROUP BY time($__interval)",
+          "rawQuery": false,
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "count"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "sum"
+              },
+              {
+                "params": [
+                  "$one_second"
+                ],
+                "type": "non_negative_derivative"
+              },
+              {
+                "params": [
+                  "发送字节数量"
+                ],
+                "type": "alias"
+              }
+            ],
+            [
+              {
+                "params": [
+                  "mean"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              },
+              {
+                "params": [
+                  "发送字节数量均值"
+                ],
+                "type": "alias"
+              }
+            ],
+            [
+              {
+                "params": [
+                  "oneMinute"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "sum"
+              },
+              {
+                "params": [
+                  "每分钟发送字节速率"
+                ],
+                "type": "alias"
+              }
+            ],
+            [
+              {
+                "params": [
+                  "fiveMinute"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "sum"
+              },
+              {
+                "params": [
+                  "每5分钟发送字节速率"
+                ],
+                "type": "alias"
+              }
+            ],
+            [
+              {
+                "params": [
+                  "fifteenMinute"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "sum"
+              },
+              {
+                "params": [
+                  "每15分钟发送字节速率"
+                ],
+                "type": "alias"
+              }
+            ],
+            [
+              {
+                "params": [
+                  "count"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "sum"
+              },
+              {
+                "params": [
+                  "发送字节总量"
+                ],
+                "type": "alias"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "region",
+              "operator": "=~",
+              "value": "/^$region$/"
+            },
+            {
+              "condition": "AND",
+              "key": "server",
+              "operator": "=~",
+              "value": "/^$server$/"
+            },
+            {
+              "condition": "AND",
+              "key": "node",
+              "operator": "=~",
+              "value": "/^$node$/"
+            }
+          ]
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "发送字节数量",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "decimals": null,
+          "format": "Bps",
+          "label": "速率（字节 / 秒）",
+          "logBase": 1,
+          "max": null,
+          "min": "0",
+          "show": true
+        },
+        {
+          "format": "bytes",
+          "label": "字节",
+          "logBase": 1,
+          "max": null,
+          "min": "0",
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "InfluxDB",
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 7,
+        "w": 12,
+        "x": 0,
+        "y": 27
+      },
+      "hiddenSeries": false,
+      "id": 12,
+      "legend": {
+        "alignAsTable": false,
+        "avg": false,
+        "current": true,
+        "max": true,
+        "min": true,
+        "rightSide": true,
+        "show": true,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 1,
+      "nullPointMode": "null",
+      "options": {
+        "dataLinks": []
+      },
+      "percentage": false,
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "alias": "",
+          "groupBy": [
+            {
+              "params": [
+                "$one_second"
+              ],
+              "type": "time"
+            }
+          ],
+          "measurement": "receivePacketNum",
+          "orderByTime": "ASC",
+          "policy": "seven_days",
+          "query": "SELECT sum(\"value\") FROM \"autogen\".\"mainPool_CurrentFreeThreadCount\" WHERE (\"region\" =~ /^$region$/ AND \"server\" =~ /^$server$/) AND $timeFilter GROUP BY time($__interval)",
+          "rawQuery": false,
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "count"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "sum"
+              },
+              {
+                "params": [
+                  "$one_second"
+                ],
+                "type": "non_negative_derivative"
+              },
+              {
+                "params": [
+                  "接收包数量"
+                ],
+                "type": "alias"
+              }
+            ],
+            [
+              {
+                "params": [
+                  "mean"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              },
+              {
+                "params": [
+                  "接收包数量均值"
+                ],
+                "type": "alias"
+              }
+            ],
+            [
+              {
+                "params": [
+                  "oneMinute"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "sum"
+              },
+              {
+                "params": [
+                  "每分钟接收包速率"
+                ],
+                "type": "alias"
+              }
+            ],
+            [
+              {
+                "params": [
+                  "fiveMinute"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "sum"
+              },
+              {
+                "params": [
+                  "每5分钟接收包速率"
+                ],
+                "type": "alias"
+              }
+            ],
+            [
+              {
+                "params": [
+                  "fifteenMinute"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "sum"
+              },
+              {
+                "params": [
+                  "每15分钟接收包速率"
+                ],
+                "type": "alias"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "region",
+              "operator": "=~",
+              "value": "/^$region$/"
+            },
+            {
+              "condition": "AND",
+              "key": "server",
+              "operator": "=~",
+              "value": "/^$server$/"
+            },
+            {
+              "condition": "AND",
+              "key": "node",
+              "operator": "=~",
+              "value": "/^$node$/"
+            }
+          ]
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "接收包数量",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "decimals": 0,
+          "format": "pps",
+          "label": "速率（包 数 / 秒）",
+          "logBase": 1,
+          "max": null,
+          "min": "0",
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": "数量",
+          "logBase": 1,
+          "max": null,
+          "min": "0",
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "InfluxDB",
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 7,
+        "w": 12,
+        "x": 12,
+        "y": 27
+      },
+      "hiddenSeries": false,
+      "id": 13,
+      "legend": {
+        "alignAsTable": false,
+        "avg": false,
+        "current": true,
+        "max": true,
+        "min": true,
+        "rightSide": true,
+        "show": true,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 1,
+      "nullPointMode": "null",
+      "options": {
+        "dataLinks": []
+      },
+      "percentage": false,
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [
+        {
+          "alias": "sendPacketNum.发送包数量",
+          "yaxis": 2
+        }
+      ],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "alias": "",
+          "groupBy": [
+            {
+              "params": [
+                "$one_second"
+              ],
+              "type": "time"
+            }
+          ],
+          "measurement": "sendPacketNum",
+          "orderByTime": "ASC",
+          "policy": "seven_days",
+          "query": "SELECT sum(\"value\") FROM \"autogen\".\"mainPool_CurrentFreeThreadCount\" WHERE (\"region\" =~ /^$region$/ AND \"server\" =~ /^$server$/) AND $timeFilter GROUP BY time($__interval)",
+          "rawQuery": false,
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "count"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "sum"
+              },
+              {
+                "params": [
+                  "$one_second"
+                ],
+                "type": "non_negative_derivative"
+              },
+              {
+                "params": [
+                  "发送包数量"
+                ],
+                "type": "alias"
+              }
+            ],
+            [
+              {
+                "params": [
+                  "mean"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              },
+              {
+                "params": [
+                  "发送包数量均值"
+                ],
+                "type": "alias"
+              }
+            ],
+            [
+              {
+                "params": [
+                  "oneMinute"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "sum"
+              },
+              {
+                "params": [
+                  "每分钟发送包速率"
+                ],
+                "type": "alias"
+              }
+            ],
+            [
+              {
+                "params": [
+                  "fiveMinute"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "sum"
+              },
+              {
+                "params": [
+                  "每5分钟发送包速率"
+                ],
+                "type": "alias"
+              }
+            ],
+            [
+              {
+                "params": [
+                  "fifteenMinute"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "sum"
+              },
+              {
+                "params": [
+                  "每15分钟发送包速率"
+                ],
+                "type": "alias"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "region",
+              "operator": "=~",
+              "value": "/^$region$/"
+            },
+            {
+              "condition": "AND",
+              "key": "server",
+              "operator": "=~",
+              "value": "/^$server$/"
+            },
+            {
+              "condition": "AND",
+              "key": "node",
+              "operator": "=~",
+              "value": "/^$node$/"
+            }
+          ]
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "发送包数量",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "decimals": null,
+          "format": "pps",
+          "label": "速率（包 数 / 秒）",
+          "logBase": 1,
+          "max": null,
+          "min": "0",
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": "数量 ",
+          "logBase": 1,
+          "max": null,
+          "min": "0",
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "InfluxDB",
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 7,
+        "w": 12,
+        "x": 0,
+        "y": 34
+      },
+      "hiddenSeries": false,
+      "id": 14,
+      "legend": {
+        "alignAsTable": false,
+        "avg": false,
+        "current": true,
+        "max": false,
+        "min": false,
+        "rightSide": true,
+        "show": true,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 1,
+      "nullPointMode": "null",
+      "options": {
+        "dataLinks": []
+      },
+      "percentage": false,
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [
+        {
+          "alias": "receivePacketSize.接收包数量",
+          "yaxis": 2
+        }
+      ],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "alias": "",
+          "groupBy": [
+            {
+              "params": [
+                "$one_second"
+              ],
+              "type": "time"
+            }
+          ],
+          "measurement": "receivePacketSize",
+          "orderByTime": "ASC",
+          "policy": "seven_days",
+          "query": "SELECT sum(\"value\") FROM \"autogen\".\"mainPool_CurrentFreeThreadCount\" WHERE (\"region\" =~ /^$region$/ AND \"server\" =~ /^$server$/) AND $timeFilter GROUP BY time($__interval)",
+          "rawQuery": false,
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "count"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "sum"
+              },
+              {
+                "params": [
+                  "$one_second"
+                ],
+                "type": "non_negative_derivative"
+              },
+              {
+                "params": [
+                  "接收包数量"
+                ],
+                "type": "alias"
+              }
+            ],
+            [
+              {
+                "params": [
+                  "max"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "max"
+              },
+              {
+                "params": [
+                  "最大包大小"
+                ],
+                "type": "alias"
+              }
+            ],
+            [
+              {
+                "params": [
+                  "min"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "min"
+              },
+              {
+                "params": [
+                  "最小包大小"
+                ],
+                "type": "alias"
+              }
+            ],
+            [
+              {
+                "params": [
+                  "mean"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              },
+              {
+                "params": [
+                  "平均包大小"
+                ],
+                "type": "alias"
+              }
+            ],
+            [
+              {
+                "params": [
+                  "75thPer"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              },
+              {
+                "params": [
+                  "75%包大小"
+                ],
+                "type": "alias"
+              }
+            ],
+            [
+              {
+                "params": [
+                  "95thPer"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              },
+              {
+                "params": [
+                  "95%包大小"
+                ],
+                "type": "alias"
+              }
+            ],
+            [
+              {
+                "params": [
+                  "98thPer"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              },
+              {
+                "params": [
+                  "98%包大小"
+                ],
+                "type": "alias"
+              }
+            ],
+            [
+              {
+                "params": [
+                  "99thPer"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              },
+              {
+                "params": [
+                  "99%包大小"
+                ],
+                "type": "alias"
+              }
+            ],
+            [
+              {
+                "params": [
+                  "999thPer"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              },
+              {
+                "params": [
+                  "999%包大小"
+                ],
+                "type": "alias"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "region",
+              "operator": "=~",
+              "value": "/^$region$/"
+            },
+            {
+              "condition": "AND",
+              "key": "server",
+              "operator": "=~",
+              "value": "/^$server$/"
+            },
+            {
+              "condition": "AND",
+              "key": "node",
+              "operator": "=~",
+              "value": "/^$node$/"
+            }
+          ]
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "接收单包大小",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "decimals": 0,
+          "format": "decbytes",
+          "label": "数量",
+          "logBase": 1,
+          "max": null,
+          "min": "0",
+          "show": true
+        },
+        {
+          "decimals": 0,
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": "0",
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": true,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "InfluxDB",
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 7,
+        "w": 12,
+        "x": 12,
+        "y": 34
+      },
+      "hiddenSeries": false,
+      "id": 15,
+      "legend": {
+        "alignAsTable": false,
+        "avg": false,
+        "current": true,
+        "max": false,
+        "min": false,
+        "rightSide": true,
+        "show": true,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 1,
+      "nullPointMode": "null",
+      "options": {
+        "dataLinks": []
+      },
+      "percentage": false,
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [
+        {
+          "alias": "sendPacketSize.发送包数量",
+          "yaxis": 2
+        }
+      ],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "alias": "",
+          "groupBy": [
+            {
+              "params": [
+                "$one_second"
+              ],
+              "type": "time"
+            }
+          ],
+          "measurement": "sendPacketSize",
+          "orderByTime": "ASC",
+          "policy": "seven_days",
+          "query": "SELECT sum(\"value\") FROM \"autogen\".\"mainPool_CurrentFreeThreadCount\" WHERE (\"region\" =~ /^$region$/ AND \"server\" =~ /^$server$/) AND $timeFilter GROUP BY time($__interval)",
+          "rawQuery": false,
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "count"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "sum"
+              },
+              {
+                "params": [
+                  "$one_second"
+                ],
+                "type": "non_negative_derivative"
+              },
+              {
+                "params": [
+                  "发送包数量"
+                ],
+                "type": "alias"
+              }
+            ],
+            [
+              {
+                "params": [
+                  "max"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "max"
+              },
+              {
+                "params": [
+                  "最大包大小"
+                ],
+                "type": "alias"
+              }
+            ],
+            [
+              {
+                "params": [
+                  "min"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "min"
+              },
+              {
+                "params": [
+                  "最小包大小"
+                ],
+                "type": "alias"
+              }
+            ],
+            [
+              {
+                "params": [
+                  "mean"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              },
+              {
+                "params": [
+                  "平均包大小"
+                ],
+                "type": "alias"
+              }
+            ],
+            [
+              {
+                "params": [
+                  "75thPer"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              },
+              {
+                "params": [
+                  "75%包大小"
+                ],
+                "type": "alias"
+              }
+            ],
+            [
+              {
+                "params": [
+                  "95thPer"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              },
+              {
+                "params": [
+                  "95%包大小"
+                ],
+                "type": "alias"
+              }
+            ],
+            [
+              {
+                "params": [
+                  "98thPer"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              },
+              {
+                "params": [
+                  "98%包大小"
+                ],
+                "type": "alias"
+              }
+            ],
+            [
+              {
+                "params": [
+                  "99thPer"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              },
+              {
+                "params": [
+                  "99%包大小"
+                ],
+                "type": "alias"
+              }
+            ],
+            [
+              {
+                "params": [
+                  "999thPer"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              },
+              {
+                "params": [
+                  "999%包大小"
+                ],
+                "type": "alias"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "region",
+              "operator": "=~",
+              "value": "/^$region$/"
+            },
+            {
+              "condition": "AND",
+              "key": "server",
+              "operator": "=~",
+              "value": "/^$server$/"
+            },
+            {
+              "condition": "AND",
+              "key": "node",
+              "operator": "=~",
+              "value": "/^$node$/"
+            }
+          ]
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "发送单包大小",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "decimals": 0,
+          "format": "decbytes",
+          "label": "数量",
+          "logBase": 1,
+          "max": null,
+          "min": "0",
+          "show": true
+        },
+        {
+          "decimals": 0,
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": "0",
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": true,
+        "alignLevel": null
+      }
+    },
+    {
+      "collapsed": true,
+      "datasource": null,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 41
+      },
+      "id": 34,
+      "panels": [
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "InfluxDB",
+          "fill": 1,
+          "fillGradient": 0,
+          "gridPos": {
+            "h": 7,
+            "w": 12,
+            "x": 0,
+            "y": 14
+          },
+          "hiddenSeries": false,
+          "id": 35,
+          "legend": {
+            "alignAsTable": false,
+            "avg": false,
+            "current": true,
+            "max": false,
+            "min": false,
+            "rightSide": true,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "nullPointMode": "null",
+          "options": {
+            "dataLinks": []
+          },
+          "percentage": false,
+          "pointradius": 2,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [
+            {
+              "alias": "parseMessageTime.反序列化数量",
+              "yaxis": 2
+            }
+          ],
+          "spaceLength": 10,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "",
+              "groupBy": [
+                {
+                  "params": [
+                    "$one_second"
+                  ],
+                  "type": "time"
+                }
+              ],
+              "measurement": "serializeMessageTime",
+              "orderByTime": "ASC",
+              "policy": "seven_days",
+              "query": "SELECT sum(\"value\") FROM \"autogen\".\"mainPool_CurrentFreeThreadCount\" WHERE (\"region\" =~ /^$region$/ AND \"server\" =~ /^$server$/) AND $timeFilter GROUP BY time($__interval)",
+              "rawQuery": false,
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "count"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "sum"
+                  },
+                  {
+                    "params": [
+                      "$one_second"
+                    ],
+                    "type": "non_negative_derivative"
+                  },
+                  {
+                    "params": [
+                      "序列化数量"
+                    ],
+                    "type": "alias"
+                  }
+                ],
+                [
+                  {
+                    "params": [
+                      "max"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "max"
+                  },
+                  {
+                    "params": [
+                      "最长时间"
+                    ],
+                    "type": "alias"
+                  }
+                ],
+                [
+                  {
+                    "params": [
+                      "min"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "min"
+                  },
+                  {
+                    "params": [
+                      "最短时间"
+                    ],
+                    "type": "alias"
+                  }
+                ],
+                [
+                  {
+                    "params": [
+                      "mean"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  },
+                  {
+                    "params": [
+                      "平均时间"
+                    ],
+                    "type": "alias"
+                  }
+                ],
+                [
+                  {
+                    "params": [
+                      "75thPer"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  },
+                  {
+                    "params": [
+                      "75%处理时间"
+                    ],
+                    "type": "alias"
+                  }
+                ],
+                [
+                  {
+                    "params": [
+                      "95thPer"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  },
+                  {
+                    "params": [
+                      "95%处理时间"
+                    ],
+                    "type": "alias"
+                  }
+                ],
+                [
+                  {
+                    "params": [
+                      "98thPer"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  },
+                  {
+                    "params": [
+                      "98%处理时间"
+                    ],
+                    "type": "alias"
+                  }
+                ],
+                [
+                  {
+                    "params": [
+                      "99thPer"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  },
+                  {
+                    "params": [
+                      "99%处理时间"
+                    ],
+                    "type": "alias"
+                  }
+                ],
+                [
+                  {
+                    "params": [
+                      "999thPer"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  },
+                  {
+                    "params": [
+                      "999%处理时间"
+                    ],
+                    "type": "alias"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "region",
+                  "operator": "=~",
+                  "value": "/^$region$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "server",
+                  "operator": "=~",
+                  "value": "/^$server$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "node",
+                  "operator": "=~",
+                  "value": "/^$node$/"
+                }
+              ]
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeRegions": [],
+          "timeShift": null,
+          "title": "PB序列列化时长",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "decimals": 0,
+              "format": "ns",
+              "label": "时间",
+              "logBase": 1,
+              "max": null,
+              "min": "0",
+              "show": true
+            },
+            {
+              "decimals": 0,
+              "format": "short",
+              "label": "数量",
+              "logBase": 1,
+              "max": null,
+              "min": "0",
+              "show": true
+            }
+          ],
+          "yaxis": {
+            "align": true,
+            "alignLevel": null
+          }
+        },
+        {
+          "aliasColors": {},
+          "bars": false,
+          "dashLength": 10,
+          "dashes": false,
+          "datasource": "InfluxDB",
+          "fill": 1,
+          "fillGradient": 0,
+          "gridPos": {
+            "h": 7,
+            "w": 12,
+            "x": 12,
+            "y": 14
+          },
+          "hiddenSeries": false,
+          "id": 36,
+          "legend": {
+            "alignAsTable": false,
+            "avg": false,
+            "current": true,
+            "max": false,
+            "min": false,
+            "rightSide": true,
+            "show": true,
+            "total": false,
+            "values": true
+          },
+          "lines": true,
+          "linewidth": 1,
+          "nullPointMode": "null",
+          "options": {
+            "dataLinks": []
+          },
+          "percentage": false,
+          "pointradius": 2,
+          "points": false,
+          "renderer": "flot",
+          "seriesOverrides": [
+            {
+              "alias": "parseMessageTime.反序列化数量",
+              "yaxis": 2
+            }
+          ],
+          "spaceLength": 10,
+          "stack": false,
+          "steppedLine": false,
+          "targets": [
+            {
+              "alias": "",
+              "groupBy": [
+                {
+                  "params": [
+                    "$one_second"
+                  ],
+                  "type": "time"
+                }
+              ],
+              "measurement": "parseMessageTime",
+              "orderByTime": "ASC",
+              "policy": "seven_days",
+              "query": "SELECT sum(\"value\") FROM \"autogen\".\"mainPool_CurrentFreeThreadCount\" WHERE (\"region\" =~ /^$region$/ AND \"server\" =~ /^$server$/) AND $timeFilter GROUP BY time($__interval)",
+              "rawQuery": false,
+              "refId": "A",
+              "resultFormat": "time_series",
+              "select": [
+                [
+                  {
+                    "params": [
+                      "count"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "sum"
+                  },
+                  {
+                    "params": [
+                      "$one_second"
+                    ],
+                    "type": "non_negative_derivative"
+                  },
+                  {
+                    "params": [
+                      "反序列化数量"
+                    ],
+                    "type": "alias"
+                  }
+                ],
+                [
+                  {
+                    "params": [
+                      "max"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "max"
+                  },
+                  {
+                    "params": [
+                      "最长时间"
+                    ],
+                    "type": "alias"
+                  }
+                ],
+                [
+                  {
+                    "params": [
+                      "min"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "min"
+                  },
+                  {
+                    "params": [
+                      "最短时间"
+                    ],
+                    "type": "alias"
+                  }
+                ],
+                [
+                  {
+                    "params": [
+                      "mean"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  },
+                  {
+                    "params": [
+                      "平均时间"
+                    ],
+                    "type": "alias"
+                  }
+                ],
+                [
+                  {
+                    "params": [
+                      "75thPer"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  },
+                  {
+                    "params": [
+                      "75%处理时间"
+                    ],
+                    "type": "alias"
+                  }
+                ],
+                [
+                  {
+                    "params": [
+                      "95thPer"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  },
+                  {
+                    "params": [
+                      "95%处理时间"
+                    ],
+                    "type": "alias"
+                  }
+                ],
+                [
+                  {
+                    "params": [
+                      "98thPer"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  },
+                  {
+                    "params": [
+                      "98%处理时间"
+                    ],
+                    "type": "alias"
+                  }
+                ],
+                [
+                  {
+                    "params": [
+                      "99thPer"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  },
+                  {
+                    "params": [
+                      "99%处理时间"
+                    ],
+                    "type": "alias"
+                  }
+                ],
+                [
+                  {
+                    "params": [
+                      "999thPer"
+                    ],
+                    "type": "field"
+                  },
+                  {
+                    "params": [],
+                    "type": "mean"
+                  },
+                  {
+                    "params": [
+                      "999%处理时间"
+                    ],
+                    "type": "alias"
+                  }
+                ]
+              ],
+              "tags": [
+                {
+                  "key": "region",
+                  "operator": "=~",
+                  "value": "/^$region$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "server",
+                  "operator": "=~",
+                  "value": "/^$server$/"
+                },
+                {
+                  "condition": "AND",
+                  "key": "node",
+                  "operator": "=~",
+                  "value": "/^$node$/"
+                }
+              ]
+            }
+          ],
+          "thresholds": [],
+          "timeFrom": null,
+          "timeRegions": [],
+          "timeShift": null,
+          "title": "PB反序列化时长",
+          "tooltip": {
+            "shared": true,
+            "sort": 0,
+            "value_type": "individual"
+          },
+          "type": "graph",
+          "xaxis": {
+            "buckets": null,
+            "mode": "time",
+            "name": null,
+            "show": true,
+            "values": []
+          },
+          "yaxes": [
+            {
+              "decimals": 0,
+              "format": "ns",
+              "label": "时间",
+              "logBase": 1,
+              "max": null,
+              "min": "0",
+              "show": true
+            },
+            {
+              "decimals": 0,
+              "format": "short",
+              "label": "数量",
+              "logBase": 1,
+              "max": null,
+              "min": "0",
+              "show": true
+            }
+          ],
+          "yaxis": {
+            "align": true,
+            "alignLevel": null
+          }
+        }
+      ],
+      "title": "protobuf",
+      "type": "row"
+    },
+    {
+      "collapsed": false,
+      "datasource": null,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 42
+      },
+      "id": 49,
+      "panels": [],
+      "title": "玩家",
+      "type": "row"
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "InfluxDB",
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 7,
+        "w": 24,
+        "x": 0,
+        "y": 43
+      },
+      "hiddenSeries": false,
+      "id": 50,
+      "legend": {
+        "alignAsTable": true,
+        "avg": false,
+        "current": true,
+        "max": true,
+        "min": true,
+        "rightSide": true,
+        "show": true,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 1,
+      "nullPointMode": "null",
+      "options": {
+        "dataLinks": []
+      },
+      "percentage": false,
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "alias": "在线数量",
+          "groupBy": [
+            {
+              "params": [
+                "$one_second"
+              ],
+              "type": "time"
+            }
+          ],
+          "measurement": "onlinePlayerNumInMemory",
+          "orderByTime": "ASC",
+          "policy": "seven_days",
+          "query": "SELECT sum(\"value\") FROM \"autogen\".\"mainPool_CurrentFreeThreadCount\" WHERE (\"region\" =~ /^$region$/ AND \"server\" =~ /^$server$/) AND $timeFilter GROUP BY time($__interval)",
+          "rawQuery": false,
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "sum"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "region",
+              "operator": "=~",
+              "value": "/^$region$/"
+            },
+            {
+              "condition": "AND",
+              "key": "server",
+              "operator": "=~",
+              "value": "/^$server$/"
+            },
+            {
+              "condition": "AND",
+              "key": "node",
+              "operator": "=~",
+              "value": "/^$node$/"
+            }
+          ]
+        },
+        {
+          "alias": "内存中玩家数量",
+          "groupBy": [
+            {
+              "params": [
+                "$one_second"
+              ],
+              "type": "time"
+            }
+          ],
+          "measurement": "totalPlayerNumInMemory",
+          "orderByTime": "ASC",
+          "policy": "seven_days",
+          "query": "SELECT sum(\"value\") FROM \"autogen\".\"mainPool_CurrentFreeThreadCount\" WHERE (\"region\" =~ /^$region$/ AND \"server\" =~ /^$server$/) AND $timeFilter GROUP BY time($__interval)",
+          "rawQuery": false,
+          "refId": "B",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "sum"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "region",
+              "operator": "=~",
+              "value": "/^$region$/"
+            },
+            {
+              "condition": "AND",
+              "key": "server",
+              "operator": "=~",
+              "value": "/^$server$/"
+            },
+            {
+              "condition": "AND",
+              "key": "node",
+              "operator": "=~",
+              "value": "/^$node$/"
+            }
+          ]
+        },
+        {
+          "alias": "离线玩家数量",
+          "groupBy": [
+            {
+              "params": [
+                "$one_second"
+              ],
+              "type": "time"
+            }
+          ],
+          "measurement": "offlinePlayerNumInMemory",
+          "orderByTime": "ASC",
+          "policy": "seven_days",
+          "query": "SELECT sum(\"value\") FROM \"autogen\".\"mainPool_CurrentFreeThreadCount\" WHERE (\"region\" =~ /^$region$/ AND \"server\" =~ /^$server$/) AND $timeFilter GROUP BY time($__interval)",
+          "rawQuery": false,
+          "refId": "C",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "sum"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "region",
+              "operator": "=~",
+              "value": "/^$region$/"
+            },
+            {
+              "condition": "AND",
+              "key": "server",
+              "operator": "=~",
+              "value": "/^$server$/"
+            },
+            {
+              "condition": "AND",
+              "key": "node",
+              "operator": "=~",
+              "value": "/^$node$/"
+            }
+          ]
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "玩家数量",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "decimals": 0,
+          "format": "short",
+          "label": "数量",
+          "logBase": 1,
+          "max": null,
+          "min": "0",
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": false
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "InfluxDB",
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 7,
+        "w": 12,
+        "x": 0,
+        "y": 50
+      },
+      "hiddenSeries": false,
+      "id": 37,
+      "legend": {
+        "alignAsTable": false,
+        "avg": false,
+        "current": true,
+        "max": false,
+        "min": false,
+        "rightSide": true,
+        "show": true,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 1,
+      "nullPointMode": "null",
+      "options": {
+        "dataLinks": []
+      },
+      "percentage": false,
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [
+        {
+          "alias": "saveRoleData.保存次数",
+          "yaxis": 2
+        }
+      ],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "alias": "",
+          "groupBy": [
+            {
+              "params": [
+                "$one_second"
+              ],
+              "type": "time"
+            }
+          ],
+          "measurement": "saveRoleData",
+          "orderByTime": "ASC",
+          "policy": "seven_days",
+          "query": "SELECT sum(\"value\") FROM \"autogen\".\"mainPool_CurrentFreeThreadCount\" WHERE (\"region\" =~ /^$region$/ AND \"server\" =~ /^$server$/) AND $timeFilter GROUP BY time($__interval)",
+          "rawQuery": false,
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "count"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "sum"
+              },
+              {
+                "params": [],
+                "type": "difference"
+              },
+              {
+                "params": [
+                  "保存次数"
+                ],
+                "type": "alias"
+              }
+            ],
+            [
+              {
+                "params": [
+                  "max"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "max"
+              },
+              {
+                "params": [
+                  "最长时间"
+                ],
+                "type": "alias"
+              }
+            ],
+            [
+              {
+                "params": [
+                  "min"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "min"
+              },
+              {
+                "params": [
+                  "最短时间"
+                ],
+                "type": "alias"
+              }
+            ],
+            [
+              {
+                "params": [
+                  "mean"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              },
+              {
+                "params": [
+                  "平均时间"
+                ],
+                "type": "alias"
+              }
+            ],
+            [
+              {
+                "params": [
+                  "75thPer"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              },
+              {
+                "params": [
+                  "75%处理时间"
+                ],
+                "type": "alias"
+              }
+            ],
+            [
+              {
+                "params": [
+                  "95thPer"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              },
+              {
+                "params": [
+                  "95%处理时间"
+                ],
+                "type": "alias"
+              }
+            ],
+            [
+              {
+                "params": [
+                  "98thPer"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              },
+              {
+                "params": [
+                  "98%处理时间"
+                ],
+                "type": "alias"
+              }
+            ],
+            [
+              {
+                "params": [
+                  "99thPer"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              },
+              {
+                "params": [
+                  "99%处理时间"
+                ],
+                "type": "alias"
+              }
+            ],
+            [
+              {
+                "params": [
+                  "999thPer"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              },
+              {
+                "params": [
+                  "999%处理时间"
+                ],
+                "type": "alias"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "region",
+              "operator": "=~",
+              "value": "/^$region$/"
+            },
+            {
+              "condition": "AND",
+              "key": "server",
+              "operator": "=~",
+              "value": "/^$server$/"
+            },
+            {
+              "condition": "AND",
+              "key": "node",
+              "operator": "=~",
+              "value": "/^$node$/"
+            }
+          ]
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "角色保存耗时",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "decimals": 0,
+          "format": "ns",
+          "label": "时间",
+          "logBase": 1,
+          "max": null,
+          "min": "0",
+          "show": true
+        },
+        {
+          "decimals": 0,
+          "format": "short",
+          "label": "数量",
+          "logBase": 1,
+          "max": null,
+          "min": "0",
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": true,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "InfluxDB",
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 7,
+        "w": 12,
+        "x": 12,
+        "y": 50
+      },
+      "hiddenSeries": false,
+      "id": 38,
+      "legend": {
+        "alignAsTable": false,
+        "avg": false,
+        "current": true,
+        "max": false,
+        "min": false,
+        "rightSide": true,
+        "show": true,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 1,
+      "nullPointMode": "null",
+      "options": {
+        "dataLinks": []
+      },
+      "percentage": false,
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [
+        {
+          "alias": "loadRoleTime.加载次数",
+          "yaxis": 2
+        }
+      ],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "alias": "",
+          "groupBy": [
+            {
+              "params": [
+                "$one_second"
+              ],
+              "type": "time"
+            }
+          ],
+          "measurement": "loadRoleTime",
+          "orderByTime": "ASC",
+          "policy": "seven_days",
+          "query": "SELECT sum(\"value\") FROM \"autogen\".\"mainPool_CurrentFreeThreadCount\" WHERE (\"region\" =~ /^$region$/ AND \"server\" =~ /^$server$/) AND $timeFilter GROUP BY time($__interval)",
+          "rawQuery": false,
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "count"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "sum"
+              },
+              {
+                "params": [],
+                "type": "difference"
+              },
+              {
+                "params": [
+                  "加载次数"
+                ],
+                "type": "alias"
+              }
+            ],
+            [
+              {
+                "params": [
+                  "max"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "max"
+              },
+              {
+                "params": [
+                  "最长时间"
+                ],
+                "type": "alias"
+              }
+            ],
+            [
+              {
+                "params": [
+                  "min"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "min"
+              },
+              {
+                "params": [
+                  "最短时间"
+                ],
+                "type": "alias"
+              }
+            ],
+            [
+              {
+                "params": [
+                  "mean"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              },
+              {
+                "params": [
+                  "平均时间"
+                ],
+                "type": "alias"
+              }
+            ],
+            [
+              {
+                "params": [
+                  "75thPer"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              },
+              {
+                "params": [
+                  "75%处理时间"
+                ],
+                "type": "alias"
+              }
+            ],
+            [
+              {
+                "params": [
+                  "95thPer"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              },
+              {
+                "params": [
+                  "95%处理时间"
+                ],
+                "type": "alias"
+              }
+            ],
+            [
+              {
+                "params": [
+                  "98thPer"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              },
+              {
+                "params": [
+                  "98%处理时间"
+                ],
+                "type": "alias"
+              }
+            ],
+            [
+              {
+                "params": [
+                  "99thPer"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              },
+              {
+                "params": [
+                  "99%处理时间"
+                ],
+                "type": "alias"
+              }
+            ],
+            [
+              {
+                "params": [
+                  "999thPer"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "mean"
+              },
+              {
+                "params": [
+                  "999%处理时间"
+                ],
+                "type": "alias"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "server",
+              "operator": "=~",
+              "value": "/^$server$/"
+            },
+            {
+              "condition": "AND",
+              "key": "node",
+              "operator": "=~",
+              "value": "/^$node$/"
+            },
+            {
+              "condition": "AND",
+              "key": "region",
+              "operator": "=~",
+              "value": "/^$region$/"
+            }
+          ]
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "角色加载耗时",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "decimals": 0,
+          "format": "ns",
+          "label": "时间",
+          "logBase": 1,
+          "max": null,
+          "min": "0",
+          "show": true
+        },
+        {
+          "decimals": 0,
+          "format": "short",
+          "label": "数量",
+          "logBase": 1,
+          "max": null,
+          "min": "0",
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": true,
+        "alignLevel": null
+      }
+    },
+    {
+      "collapsed": false,
+      "datasource": null,
+      "gridPos": {
+        "h": 1,
+        "w": 24,
+        "x": 0,
+        "y": 57
+      },
+      "id": 4,
+      "panels": [],
+      "title": "线程",
+      "type": "row"
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "InfluxDB",
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 7,
+        "w": 12,
+        "x": 0,
+        "y": 58
+      },
+      "hiddenSeries": false,
+      "id": 2,
+      "legend": {
+        "alignAsTable": false,
+        "avg": false,
+        "current": true,
+        "max": true,
+        "min": true,
+        "rightSide": true,
+        "show": true,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 1,
+      "nullPointMode": "null",
+      "options": {
+        "dataLinks": []
+      },
+      "percentage": false,
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "alias": "空闲线程数量",
+          "groupBy": [
+            {
+              "params": [
+                "$one_second"
+              ],
+              "type": "time"
+            }
+          ],
+          "measurement": "mainPool_currentFreeThreadCount",
+          "orderByTime": "ASC",
+          "policy": "seven_days",
+          "query": "SELECT sum(\"value\") FROM \"autogen\".\"mainPool_CurrentFreeThreadCount\" WHERE (\"region\" =~ /^$region$/ AND \"server\" =~ /^$server$/) AND $timeFilter GROUP BY time($__interval)",
+          "rawQuery": false,
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "sum"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "region",
+              "operator": "=~",
+              "value": "/^$region$/"
+            },
+            {
+              "condition": "AND",
+              "key": "server",
+              "operator": "=~",
+              "value": "/^$server$/"
+            },
+            {
+              "condition": "AND",
+              "key": "node",
+              "operator": "=~",
+              "value": "/^$node$/"
+            }
+          ]
+        },
+        {
+          "alias": "最大线程数量",
+          "groupBy": [
+            {
+              "params": [
+                "$one_second"
+              ],
+              "type": "time"
+            }
+          ],
+          "measurement": "mainPool_maxThreadCount",
+          "orderByTime": "ASC",
+          "policy": "seven_days",
+          "query": "SELECT sum(\"value\") FROM \"autogen\".\"mainPool_CurrentFreeThreadCount\" WHERE (\"region\" =~ /^$region$/ AND \"server\" =~ /^$server$/) AND $timeFilter GROUP BY time($__interval)",
+          "rawQuery": false,
+          "refId": "B",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "sum"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "region",
+              "operator": "=~",
+              "value": "/^$region$/"
+            },
+            {
+              "condition": "AND",
+              "key": "server",
+              "operator": "=~",
+              "value": "/^$server$/"
+            },
+            {
+              "condition": "AND",
+              "key": "node",
+              "operator": "=~",
+              "value": "/^$node$/"
+            }
+          ]
+        },
+        {
+          "alias": "起动l线程数量",
+          "groupBy": [
+            {
+              "params": [
+                "$one_second"
+              ],
+              "type": "time"
+            }
+          ],
+          "measurement": "mainPool_currentThreadCount",
+          "orderByTime": "ASC",
+          "policy": "seven_days",
+          "query": "SELECT sum(\"value\") FROM \"autogen\".\"mainPool_CurrentFreeThreadCount\" WHERE (\"region\" =~ /^$region$/ AND \"server\" =~ /^$server$/) AND $timeFilter GROUP BY time($__interval)",
+          "rawQuery": false,
+          "refId": "C",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "sum"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "region",
+              "operator": "=~",
+              "value": "/^$region$/"
+            },
+            {
+              "condition": "AND",
+              "key": "server",
+              "operator": "=~",
+              "value": "/^$server$/"
+            },
+            {
+              "condition": "AND",
+              "key": "node",
+              "operator": "=~",
+              "value": "/^$node$/"
+            }
+          ]
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "主线程池",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "decimals": 0,
+          "format": "short",
+          "label": "数量",
+          "logBase": 1,
+          "max": null,
+          "min": "0",
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": false
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "InfluxDB",
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 7,
+        "w": 12,
+        "x": 12,
+        "y": 58
+      },
+      "hiddenSeries": false,
+      "id": 5,
+      "legend": {
+        "alignAsTable": false,
+        "avg": false,
+        "current": true,
+        "max": true,
+        "min": true,
+        "rightSide": true,
+        "show": true,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 1,
+      "nullPointMode": "null",
+      "options": {
+        "dataLinks": []
+      },
+      "percentage": false,
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "alias": "当前待处理任务数量",
+          "groupBy": [
+            {
+              "params": [
+                "$one_second"
+              ],
+              "type": "time"
+            }
+          ],
+          "measurement": "mainPool_bufferTaskSize",
+          "orderByTime": "ASC",
+          "policy": "seven_days",
+          "query": "SELECT sum(\"value\") FROM \"autogen\".\"mainPool_CurrentFreeThreadCount\" WHERE (\"region\" =~ /^$region$/ AND \"server\" =~ /^$server$/) AND $timeFilter GROUP BY time($__interval)",
+          "rawQuery": false,
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "sum"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "region",
+              "operator": "=~",
+              "value": "/^$region$/"
+            },
+            {
+              "condition": "AND",
+              "key": "server",
+              "operator": "=~",
+              "value": "/^$server$/"
+            },
+            {
+              "condition": "AND",
+              "key": "node",
+              "operator": "=~",
+              "value": "/^$node$/"
+            }
+          ]
+        },
+        {
+          "alias": "已处理的任务数量",
+          "groupBy": [
+            {
+              "params": [
+                "$one_second"
+              ],
+              "type": "time"
+            }
+          ],
+          "measurement": "mainPool_finiTaskSize",
+          "orderByTime": "ASC",
+          "policy": "seven_days",
+          "query": "SELECT sum(\"value\") FROM \"autogen\".\"mainPool_CurrentFreeThreadCount\" WHERE (\"region\" =~ /^$region$/ AND \"server\" =~ /^$server$/) AND $timeFilter GROUP BY time($__interval)",
+          "rawQuery": false,
+          "refId": "B",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "sum"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "region",
+              "operator": "=~",
+              "value": "/^$region$/"
+            },
+            {
+              "condition": "AND",
+              "key": "server",
+              "operator": "=~",
+              "value": "/^$server$/"
+            },
+            {
+              "condition": "AND",
+              "key": "node",
+              "operator": "=~",
+              "value": "/^$node$/"
+            }
+          ]
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "主线程池任务列队",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "decimals": 0,
+          "format": "short",
+          "label": "数量",
+          "logBase": 1,
+          "max": null,
+          "min": "0",
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": false
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "InfluxDB",
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 7,
+        "w": 12,
+        "x": 0,
+        "y": 65
+      },
+      "hiddenSeries": false,
+      "id": 6,
+      "legend": {
+        "alignAsTable": false,
+        "avg": false,
+        "current": true,
+        "max": true,
+        "min": true,
+        "rightSide": true,
+        "show": true,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 1,
+      "nullPointMode": "null",
+      "options": {
+        "dataLinks": []
+      },
+      "percentage": false,
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "alias": "空闲线程数量",
+          "groupBy": [
+            {
+              "params": [
+                "$one_second"
+              ],
+              "type": "time"
+            }
+          ],
+          "measurement": "mysql_currentFreeThreadCount",
+          "orderByTime": "ASC",
+          "policy": "seven_days",
+          "query": "SELECT sum(\"value\") FROM \"autogen\".\"mainPool_CurrentFreeThreadCount\" WHERE (\"region\" =~ /^$region$/ AND \"server\" =~ /^$server$/) AND $timeFilter GROUP BY time($__interval)",
+          "rawQuery": false,
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "sum"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "region",
+              "operator": "=~",
+              "value": "/^$region$/"
+            },
+            {
+              "condition": "AND",
+              "key": "server",
+              "operator": "=~",
+              "value": "/^$server$/"
+            },
+            {
+              "condition": "AND",
+              "key": "node",
+              "operator": "=~",
+              "value": "/^$node$/"
+            }
+          ]
+        },
+        {
+          "alias": "最大线程数量",
+          "groupBy": [
+            {
+              "params": [
+                "$one_second"
+              ],
+              "type": "time"
+            }
+          ],
+          "measurement": "mysql_maxThreadCount",
+          "orderByTime": "ASC",
+          "policy": "seven_days",
+          "query": "SELECT sum(\"value\") FROM \"autogen\".\"mainPool_CurrentFreeThreadCount\" WHERE (\"region\" =~ /^$region$/ AND \"server\" =~ /^$server$/) AND $timeFilter GROUP BY time($__interval)",
+          "rawQuery": false,
+          "refId": "B",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "sum"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "region",
+              "operator": "=~",
+              "value": "/^$region$/"
+            },
+            {
+              "condition": "AND",
+              "key": "server",
+              "operator": "=~",
+              "value": "/^$server$/"
+            },
+            {
+              "condition": "AND",
+              "key": "node",
+              "operator": "=~",
+              "value": "/^$node$/"
+            }
+          ]
+        },
+        {
+          "alias": "起动l线程数量",
+          "groupBy": [
+            {
+              "params": [
+                "$one_second"
+              ],
+              "type": "time"
+            }
+          ],
+          "measurement": "mysql_currentThreadCount",
+          "orderByTime": "ASC",
+          "policy": "seven_days",
+          "query": "SELECT sum(\"value\") FROM \"autogen\".\"mainPool_CurrentFreeThreadCount\" WHERE (\"region\" =~ /^$region$/ AND \"server\" =~ /^$server$/) AND $timeFilter GROUP BY time($__interval)",
+          "rawQuery": false,
+          "refId": "C",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "sum"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "region",
+              "operator": "=~",
+              "value": "/^$region$/"
+            },
+            {
+              "condition": "AND",
+              "key": "server",
+              "operator": "=~",
+              "value": "/^$server$/"
+            },
+            {
+              "condition": "AND",
+              "key": "node",
+              "operator": "=~",
+              "value": "/^$node$/"
+            }
+          ]
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Mysql程池",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "decimals": 0,
+          "format": "short",
+          "label": "数量",
+          "logBase": 1,
+          "max": null,
+          "min": "0",
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": false
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "InfluxDB",
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 7,
+        "w": 12,
+        "x": 12,
+        "y": 65
+      },
+      "hiddenSeries": false,
+      "id": 7,
+      "legend": {
+        "alignAsTable": false,
+        "avg": false,
+        "current": true,
+        "max": true,
+        "min": true,
+        "rightSide": true,
+        "show": true,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 1,
+      "nullPointMode": "null",
+      "options": {
+        "dataLinks": []
+      },
+      "percentage": false,
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "alias": "当前待处理任务数量",
+          "groupBy": [
+            {
+              "params": [
+                "$one_second"
+              ],
+              "type": "time"
+            }
+          ],
+          "measurement": "mysql_bufferTaskSize",
+          "orderByTime": "ASC",
+          "policy": "seven_days",
+          "query": "SELECT sum(\"value\") FROM \"autogen\".\"mainPool_CurrentFreeThreadCount\" WHERE (\"region\" =~ /^$region$/ AND \"server\" =~ /^$server$/) AND $timeFilter GROUP BY time($__interval)",
+          "rawQuery": false,
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "sum"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "region",
+              "operator": "=~",
+              "value": "/^$region$/"
+            },
+            {
+              "condition": "AND",
+              "key": "server",
+              "operator": "=~",
+              "value": "/^$server$/"
+            },
+            {
+              "condition": "AND",
+              "key": "node",
+              "operator": "=~",
+              "value": "/^$node$/"
+            }
+          ]
+        },
+        {
+          "alias": "已处理的任务数量",
+          "groupBy": [
+            {
+              "params": [
+                "$one_second"
+              ],
+              "type": "time"
+            }
+          ],
+          "measurement": "mysql_finiTaskSize",
+          "orderByTime": "ASC",
+          "policy": "seven_days",
+          "query": "SELECT sum(\"value\") FROM \"autogen\".\"mainPool_CurrentFreeThreadCount\" WHERE (\"region\" =~ /^$region$/ AND \"server\" =~ /^$server$/) AND $timeFilter GROUP BY time($__interval)",
+          "rawQuery": false,
+          "refId": "B",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "sum"
+              },
+              {
+                "params": [],
+                "type": "non_negative_difference"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "region",
+              "operator": "=~",
+              "value": "/^$region$/"
+            },
+            {
+              "condition": "AND",
+              "key": "server",
+              "operator": "=~",
+              "value": "/^$server$/"
+            },
+            {
+              "condition": "AND",
+              "key": "node",
+              "operator": "=~",
+              "value": "/^$node$/"
+            }
+          ]
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Mysql线程池任务列队",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "decimals": 0,
+          "format": "short",
+          "label": "数量",
+          "logBase": 1,
+          "max": null,
+          "min": "0",
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": false
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "InfluxDB",
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 7,
+        "w": 12,
+        "x": 0,
+        "y": 72
+      },
+      "hiddenSeries": false,
+      "id": 47,
+      "legend": {
+        "alignAsTable": false,
+        "avg": false,
+        "current": true,
+        "max": true,
+        "min": true,
+        "rightSide": true,
+        "show": true,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 1,
+      "nullPointMode": "null",
+      "options": {
+        "dataLinks": []
+      },
+      "percentage": false,
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "alias": "空闲线程数量",
+          "groupBy": [
+            {
+              "params": [
+                "$one_second"
+              ],
+              "type": "time"
+            }
+          ],
+          "measurement": "redis_currentFreeThreadCount",
+          "orderByTime": "ASC",
+          "policy": "seven_days",
+          "query": "SELECT sum(\"value\") FROM \"autogen\".\"mainPool_CurrentFreeThreadCount\" WHERE (\"region\" =~ /^$region$/ AND \"server\" =~ /^$server$/) AND $timeFilter GROUP BY time($__interval)",
+          "rawQuery": false,
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "sum"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "region",
+              "operator": "=~",
+              "value": "/^$region$/"
+            },
+            {
+              "condition": "AND",
+              "key": "server",
+              "operator": "=~",
+              "value": "/^$server$/"
+            },
+            {
+              "condition": "AND",
+              "key": "node",
+              "operator": "=~",
+              "value": "/^$node$/"
+            }
+          ]
+        },
+        {
+          "alias": "最大线程数量",
+          "groupBy": [
+            {
+              "params": [
+                "$one_second"
+              ],
+              "type": "time"
+            }
+          ],
+          "measurement": "redis_maxThreadCount",
+          "orderByTime": "ASC",
+          "policy": "seven_days",
+          "query": "SELECT sum(\"value\") FROM \"autogen\".\"mainPool_CurrentFreeThreadCount\" WHERE (\"region\" =~ /^$region$/ AND \"server\" =~ /^$server$/) AND $timeFilter GROUP BY time($__interval)",
+          "rawQuery": false,
+          "refId": "B",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "sum"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "region",
+              "operator": "=~",
+              "value": "/^$region$/"
+            },
+            {
+              "condition": "AND",
+              "key": "server",
+              "operator": "=~",
+              "value": "/^$server$/"
+            },
+            {
+              "condition": "AND",
+              "key": "node",
+              "operator": "=~",
+              "value": "/^$node$/"
+            }
+          ]
+        },
+        {
+          "alias": "起动l线程数量",
+          "groupBy": [
+            {
+              "params": [
+                "$one_second"
+              ],
+              "type": "time"
+            }
+          ],
+          "measurement": "redis_currentThreadCount",
+          "orderByTime": "ASC",
+          "policy": "seven_days",
+          "query": "SELECT sum(\"value\") FROM \"autogen\".\"mainPool_CurrentFreeThreadCount\" WHERE (\"region\" =~ /^$region$/ AND \"server\" =~ /^$server$/) AND $timeFilter GROUP BY time($__interval)",
+          "rawQuery": false,
+          "refId": "C",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "sum"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "region",
+              "operator": "=~",
+              "value": "/^$region$/"
+            },
+            {
+              "condition": "AND",
+              "key": "server",
+              "operator": "=~",
+              "value": "/^$server$/"
+            },
+            {
+              "condition": "AND",
+              "key": "node",
+              "operator": "=~",
+              "value": "/^$node$/"
+            }
+          ]
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Redis程池",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "decimals": 0,
+          "format": "short",
+          "label": "数量",
+          "logBase": 1,
+          "max": null,
+          "min": "0",
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": false
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "InfluxDB",
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 7,
+        "w": 12,
+        "x": 12,
+        "y": 72
+      },
+      "hiddenSeries": false,
+      "id": 46,
+      "legend": {
+        "alignAsTable": false,
+        "avg": false,
+        "current": true,
+        "max": true,
+        "min": true,
+        "rightSide": true,
+        "show": true,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 1,
+      "nullPointMode": "null",
+      "options": {
+        "dataLinks": []
+      },
+      "percentage": false,
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "alias": "当前待处理任务数量",
+          "groupBy": [
+            {
+              "params": [
+                "$one_second"
+              ],
+              "type": "time"
+            }
+          ],
+          "measurement": "redis_bufferTaskSize",
+          "orderByTime": "ASC",
+          "policy": "seven_days",
+          "query": "SELECT sum(\"value\") FROM \"autogen\".\"mainPool_CurrentFreeThreadCount\" WHERE (\"region\" =~ /^$region$/ AND \"server\" =~ /^$server$/) AND $timeFilter GROUP BY time($__interval)",
+          "rawQuery": false,
+          "refId": "A",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "sum"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "region",
+              "operator": "=~",
+              "value": "/^$region$/"
+            },
+            {
+              "condition": "AND",
+              "key": "server",
+              "operator": "=~",
+              "value": "/^$server$/"
+            },
+            {
+              "condition": "AND",
+              "key": "node",
+              "operator": "=~",
+              "value": "/^$node$/"
+            }
+          ]
+        },
+        {
+          "alias": "已处理的任务数量",
+          "groupBy": [
+            {
+              "params": [
+                "$one_second"
+              ],
+              "type": "time"
+            }
+          ],
+          "measurement": "redis_finiTaskSize",
+          "orderByTime": "ASC",
+          "policy": "seven_days",
+          "query": "SELECT sum(\"value\") FROM \"autogen\".\"mainPool_CurrentFreeThreadCount\" WHERE (\"region\" =~ /^$region$/ AND \"server\" =~ /^$server$/) AND $timeFilter GROUP BY time($__interval)",
+          "rawQuery": false,
+          "refId": "B",
+          "resultFormat": "time_series",
+          "select": [
+            [
+              {
+                "params": [
+                  "value"
+                ],
+                "type": "field"
+              },
+              {
+                "params": [],
+                "type": "sum"
+              },
+              {
+                "params": [],
+                "type": "difference"
+              }
+            ]
+          ],
+          "tags": [
+            {
+              "key": "region",
+              "operator": "=~",
+              "value": "/^$region$/"
+            },
+            {
+              "condition": "AND",
+              "key": "server",
+              "operator": "=~",
+              "value": "/^$server$/"
+            },
+            {
+              "condition": "AND",
+              "key": "node",
+              "operator": "=~",
+              "value": "/^$node$/"
+            }
+          ]
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Redis线程池任务列队",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "decimals": 0,
+          "format": "short",
+          "label": "数量",
+          "logBase": 1,
+          "max": null,
+          "min": "0",
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": false
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    }
+  ],
+  "refresh": "10s",
+  "schemaVersion": 21,
+  "style": "dark",
+  "tags": [],
+  "templating": {
+    "list": [
+      {
+        "allValue": null,
+        "current": {
+          "text": "zzf",
+          "value": "zzf"
+        },
+        "datasource": "InfluxDB",
+        "definition": "show tag values with key=\"region\"",
+        "hide": 0,
+        "includeAll": false,
+        "label": "区域",
+        "multi": false,
+        "name": "region",
+        "options": [],
+        "query": "show tag values with key=\"region\"",
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      },
+      {
+        "allValue": null,
+        "current": {
+          "text": "gameapp",
+          "value": "gameapp"
+        },
+        "datasource": "InfluxDB",
+        "definition": "show tag values with key=\"server\"  where region=~/$region/",
+        "hide": 0,
+        "includeAll": false,
+        "label": "服务器",
+        "multi": false,
+        "name": "server",
+        "options": [],
+        "query": "show tag values with key=\"server\"  where region=~/$region/",
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      },
+      {
+        "allValue": null,
+        "current": {
+          "text": "All",
+          "value": [
+            "$__all"
+          ]
+        },
+        "datasource": "InfluxDB",
+        "definition": "show tag values with key=\"node\" where region=~/$region/ and server=~/$server/",
+        "hide": 0,
+        "includeAll": true,
+        "label": "节点",
+        "multi": true,
+        "name": "node",
+        "options": [],
+        "query": "show tag values with key=\"node\" where region=~/$region/ and server=~/$server/",
+        "refresh": 2,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      },
+      {
+        "current": {
+          "selected": true,
+          "text": "10s",
+          "value": "10s"
+        },
+        "hide": 1,
+        "label": null,
+        "name": "one_second",
+        "options": [
+          {
+            "selected": true,
+            "text": "10s",
+            "value": "10s"
+          }
+        ],
+        "query": "10s",
+        "skipUrlSync": false,
+        "type": "constant"
+      }
+    ]
+  },
+  "time": {
+    "from": "now-30m",
+    "to": "now"
+  },
+  "timepicker": {
+    "hidden": false,
+    "refresh_intervals": [
+      "1s",
+      "5s",
+      "10s",
+      "30s",
+      "1m",
+      "5m",
+      "15m",
+      "30m",
+      "1h",
+      "2h",
+      "1d"
+    ]
+  },
+  "timezone": "",
+  "title": "1s_dashboard",
+  "uid": "NkNvHO-Wk",
+  "version": 149
+}
