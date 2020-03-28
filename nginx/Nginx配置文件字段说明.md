@@ -22,7 +22,7 @@ http {
     sendfile on;   #允许sendfile方式传输文件，默认为off，可以在http块，server块，location块。
     sendfile_max_chunk 100k;  #每个进程每次调用传输数量不能大于设定的值，默认为0，即不设上限。
     keepalive_timeout 65;  #连接超时时间，默认为75s，可以在http，server，location块。
-
+    include /usr/local/nginx/conf.d/*.conf; // 包含配置的其它服务器
     upstream mysvr {   
       server 127.0.0.1:7878;
       server 192.168.10.121:3333 backup;  #热备
@@ -39,6 +39,23 @@ http {
            deny 127.0.0.1;  #拒绝的ip
            allow 172.18.5.54; #允许的ip           
         } 
+    }
+}
+```
+在/usr/local/nginx/conf.d目录下增加任意名字，但后辍必须为.conf的文件
+```
+server {
+    listen       8011;
+    server_name  test.cn;
+    root /usr/local/nginx/www;
+    index index.php;
+
+    location ~ \.php?.*$ {
+        try_files $uri /index.php =404;
+        fastcgi_index  index.php;
+        fastcgi_pass 127.0.0.1:9000;
+        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+        include fastcgi_params;
     }
 }
 ```
