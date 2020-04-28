@@ -14,3 +14,5 @@ alias cp='cp -i'
 ```
 unalias cp
 ```
+
+* 若重新登陆未生效，则添加`source ~/.bashrc` 到`~/.bash_profile`中
