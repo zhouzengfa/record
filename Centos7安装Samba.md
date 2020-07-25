@@ -59,3 +59,16 @@
 1. 输入正确的用户名密码，提示用户名或密码错误
 
 		尝试运行-secpol.msc-本地策略-安全选项-网络安全: LAN 管理器身份验证级别-发送仅 NTLMv2 响应
+2. 若提示权限限制，查看SELinux配置
+```
+setsebool -P samba_export_all_rw on
+```
+备注：	selinux相关操作
+	1. 查看文件上下文
+	```
+	ls -Z
+	```
+	2. 设置文件上下文类型
+	```
+	chcon -t home_root_t filename
+	```
