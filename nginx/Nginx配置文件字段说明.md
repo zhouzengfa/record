@@ -22,7 +22,7 @@ http {
     sendfile on;   #允许sendfile方式传输文件，默认为off，可以在http块，server块，location块。
     sendfile_max_chunk 100k;  #每个进程每次调用传输数量不能大于设定的值，默认为0，即不设上限。
     keepalive_timeout 65;  #连接超时时间，默认为75s，可以在http，server，location块。
-    include /usr/local/nginx/conf.d/*.conf; // 包含配置的其它服务器
+    include /usr/local/nginx/conf.d/*.conf; # 包含配置的其它服务器
     upstream mysvr {   
       server 127.0.0.1:7878;
       server 192.168.10.121:3333 backup;  #热备
