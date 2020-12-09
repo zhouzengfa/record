@@ -3,8 +3,6 @@
 
   ```shell
   yum -y install pcre-devel openssl openssl-devel
-  
-  
   ```
 
 * 安装
