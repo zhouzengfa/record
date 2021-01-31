@@ -26,7 +26,7 @@ TCP把连接作为最基本的对象，每一条TCP连接都有两个端点，�
 
 ## TCP连接的建立(三次握手)
 先附上TCP连接的图吧,然后拿图来分析:
-![imae](./images/tcp_connect.png)
+![img](./images/tcp_connect.png)
 
 1. 服务器先创建传输控制块TCB,然后服务器进入监听阶段
 2. (<font color="#dd0000">第一次握手</font>)客户端创建传输控制块TCB,然后发送一个请求连接SYN(SYN=1是请求连接)以及自己的序号seq,假设seq是x,发送完毕后客户端进入SYN-SENT(同步已发送)阶段
