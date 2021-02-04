@@ -112,7 +112,7 @@
 
 
 
-![图片](https://mmbiz.qpic.cn/mmbiz_png/Z6bicxIx5naIo9W9XKibdIzLP2NxdYhzkLnpq3xuE8icjH3mlkY1S9Ujtey0GWvic93hIOpCYYUkw8icWQGOicBBuSicg/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1)
+![图片](..\images\fen_qu_du_li_fen_pei_suan_fa.jpg)
 
 
 
